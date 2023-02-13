@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Z_Movement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Z_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private Transform trans;
+    private SpriteRenderer sp;
 
     //Movement Variables
     private Vector2 playerInput { get; set; }
@@ -27,6 +29,7 @@ public class Z_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         trans = GetComponent<Transform>();
+        sp = GetComponent<SpriteRenderer>();
         gunParent = GetComponentInChildren<Gun_Parent>();
     }
 
@@ -35,6 +38,16 @@ public class Z_Movement : MonoBehaviour
         pointerInput = GetPointerPosition();
         gunParent.pointerPos = pointerInput;
         playerInput = movement.action.ReadValue<Vector2>();
+
+        Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
+        if (zDirection.x < 0f)
+        {
+            sp.flipX = true;
+        }
+        else if (zDirection.x > 0f)
+        {
+            sp.flipX = false;
+        }
     }
 
     private void FixedUpdate()
@@ -61,15 +74,14 @@ public class Z_Movement : MonoBehaviour
 
     private void PerformShoot(InputAction.CallbackContext obj)
     {
-        //if(Gun_Parent == null)
-        //{
-        //    Debug.Log("Gun_Parent is null");
-        //}
-        //else
-        //{
-
-        //}
-        //throw new NotImplementedException();
+        if(gunParent == null)
+        {
+            Debug.Log("Gun_Parent is null");
+        }
+        else
+        {
+            gunParent.Shoot();
+        }
+        throw new NotImplementedException();
     }
 }
-
