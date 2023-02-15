@@ -18,6 +18,7 @@ public class Z_Movement : MonoBehaviour
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
 
+    //Mouse Variables
     private Vector3 mousePos;
     private Vector2 pointerInput;
 
@@ -25,6 +26,10 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private Camera_Target camTar;
 
     [SerializeField] private InputActionReference movement, shoot, pointerPos;
+
+    //Health Variables
+    [SerializeField] private int maxHealth = 100;
+    private int currentHealth;
 
     private void Start()
     {
@@ -34,6 +39,8 @@ public class Z_Movement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         gunParent = GetComponentInChildren<Gun_Parent>();
+
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -95,6 +102,20 @@ public class Z_Movement : MonoBehaviour
         {
             gunParent.Shoot();
         }
-        throw new NotImplementedException();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Died");
     }
 }
