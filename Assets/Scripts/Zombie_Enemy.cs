@@ -7,38 +7,49 @@ using System;
 
 public class Zombie_Enemy : MonoBehaviour
 {
+    //Game Components
     [SerializeField] private AIPath aiPath;
+    [SerializeField] private Z_Movement z;
+    [SerializeField] private Animator anim;
     private BoxCollider2D coll;
-    private Animator anim;
+    private Rigidbody2D rb;
 
+    //BoxCast Variables
     [SerializeField] private LayerMask zLayers;
     private Collider2D[] hitZ;
-
     private Vector2 boxSize = new Vector2(2.5f, 2.5f);
 
+    //Health Variables
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
+
+    //Attack Variables
+    private int attackRange = 1;
     private int attackDamage = 20;
     private float nextAttackTime;
     [SerializeField] private float attackCooldown = 2;
     private bool canAttack;
 
+    //Bullet Variables
     [SerializeField] private Bullet_Controller bullet;
+
+    private bool isDead = false;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
         currentHealth = maxHealth;
         canAttack = true;
     }
 
     private void Update()
     {
-        if (aiPath.reachedEndOfPath == true)
+        if (Vector3.Distance(gameObject.transform.position, z.zPosition) < attackRange)
         {
             if(canAttack == true)
             {
+                aiPath.canMove = false;
                 hitZ = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), boxSize, 0f, zLayers);
                 StartCoroutine(AttackCooldown());
                 foreach (Collider2D player in hitZ)
@@ -46,13 +57,24 @@ public class Zombie_Enemy : MonoBehaviour
                     player.GetComponent<Z_Movement>().TakeDamage(attackDamage);
                 }
             }
-            else
+            else if (canAttack == false && isDead == false)
             {
-                if(hitZ.Length > 0)
+                if (hitZ.Length > 0)
                 {
                     Array.Clear(hitZ, 0, hitZ.Length);
                 }
             }
+        }
+        else
+        {
+            if(isDead == true)
+            {
+                aiPath.canMove = false;
+            }
+            else
+            {
+                aiPath.canMove = true;
+            }    
         }
     }
 
@@ -60,8 +82,7 @@ public class Zombie_Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("Zombie Hit");
-            ZombieTakeDamage(bullet.bulletDamage);
+            StartCoroutine(KnockBackWait());
         }
     }
 
@@ -84,6 +105,7 @@ public class Zombie_Enemy : MonoBehaviour
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
+        aiPath.canMove = true;
         Debug.Log("Player hit");
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
@@ -92,9 +114,18 @@ public class Zombie_Enemy : MonoBehaviour
     private IEnumerator WaitForDeathAnim()
     {
         anim.SetBool("IsDead", true);
+        isDead = true;
+        coll.enabled = false;
         canAttack = false;
         aiPath.canMove = false;
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
+    }
+
+    private IEnumerator KnockBackWait()
+    {
+        ZombieTakeDamage(bullet.bulletDamage);
+        yield return new WaitForSeconds(0.1f);
+        rb.velocity = new Vector2(0f, 0f);
     }
 }

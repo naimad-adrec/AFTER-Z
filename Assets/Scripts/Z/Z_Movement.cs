@@ -17,6 +17,7 @@ public class Z_Movement : MonoBehaviour
     //Movement Variables
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
+    public Vector3 zPosition;
 
     //Mouse Variables
     private Vector3 mousePos;
@@ -40,12 +41,15 @@ public class Z_Movement : MonoBehaviour
         anim = GetComponent<Animator>();
         gunParent = GetComponentInChildren<Gun_Parent>();
 
+        zPosition = transform.position;
         currentHealth = maxHealth;
     }
 
     private void Update()
     {
         pointerInput = GetPointerPosition();
+        zPosition = transform.position;
+        zPosition = transform.position;
         gunParent.pointerPos = pointerInput;
         camTar.mousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         playerInput = movement.action.ReadValue<Vector2>();
@@ -117,5 +121,10 @@ public class Z_Movement : MonoBehaviour
     private void Die()
     {
         Debug.Log("Died");
+    }
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
 }

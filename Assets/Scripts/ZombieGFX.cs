@@ -13,7 +13,7 @@ public class ZombieGFX : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
         if (aiPath.desiredVelocity.x >= 0.01f)
         {
