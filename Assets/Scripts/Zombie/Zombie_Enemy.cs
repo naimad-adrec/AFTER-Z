@@ -9,10 +9,11 @@ public class Zombie_Enemy : MonoBehaviour
 {
     //Game Components
     [SerializeField] private AIPath aiPath;
-    [SerializeField] private Z_Movement z;
     [SerializeField] private Animator anim;
     private BoxCollider2D coll;
     private Rigidbody2D rb;
+
+    //Instance
 
     //BoxCast Variables
     [SerializeField] private LayerMask zLayers;
@@ -34,17 +35,41 @@ public class Zombie_Enemy : MonoBehaviour
     //Bullet Variables
     [SerializeField] private Bullet_Controller bullet;
 
+    private Vector3 zNewPosition;
+
+    IAstarAI ai;
+
+    void OnEnable()
+    {
+        ai = GetComponent<IAstarAI>();
+        // Update the destination right before searching for a path as well.
+        // This is enough in theory, but this script will also update the destination every
+        // frame as the destination is used for debugging and may be used for other things by other
+        // scripts as well. So it makes sense that it is up to date every frame.
+        if (ai != null) ai.onSearchPath += Update;
+    }
+
+    void OnDisable()
+    {
+        if (ai != null) ai.onSearchPath -= Update;
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         currentHealth = maxHealth;
         canAttack = true;
+        zNewPosition = Z_Movement.Instance.zPosition;
     }
 
     private void Update()
     {
-        if (Vector3.Distance(gameObject.transform.position, z.zPosition) < attackRange)
+        zNewPosition = Z_Movement.Instance.zPosition;
+
+        if (rb != null && ai != null) ai.destination = zNewPosition;
+
+        if (Vector3.Distance(gameObject.transform.position, zNewPosition) < attackRange)
         {
             if(canAttack == true)
             {
@@ -90,7 +115,6 @@ public class Zombie_Enemy : MonoBehaviour
     private void ZombieTakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {

@@ -14,6 +14,9 @@ public class Z_Movement : MonoBehaviour
     private SpriteRenderer sp;
     private Animator anim;
 
+    //Instance
+    public static Z_Movement Instance { get; private set; }
+
     //Movement Variables
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
@@ -34,6 +37,7 @@ public class Z_Movement : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         trans = GetComponent<Transform>();
@@ -48,7 +52,6 @@ public class Z_Movement : MonoBehaviour
     private void Update()
     {
         pointerInput = GetPointerPosition();
-        zPosition = transform.position;
         zPosition = transform.position;
         gunParent.pointerPos = pointerInput;
         camTar.mousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);

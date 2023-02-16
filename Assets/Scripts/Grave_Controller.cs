@@ -10,52 +10,53 @@ public class Grave_Controller : MonoBehaviour
     [SerializeField] private GameObject zombie;
 
     private bool unearthed;
-    private float currentTime = 0f;
-    private float unearthTimer;
     private Vector3 zombieSpawnPoint;
-    private bool zombieSpawnTime;
+
+    [SerializeField] private float zombieSpawnTime;
+    private float currentZombieSpawnTime;
+
+    [SerializeField] private float graveUnearthTime;
+    private float currentGraveUnearthTime;
+
     
 
     private void Start()
     {
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-
         coll.enabled = false;
+
+        currentZombieSpawnTime = zombieSpawnTime;
+
         unearthed = false;
-        zombieSpawnTime = false;
         float unearthTimer = Random.Range(10f, 20f);
-        currentTime = unearthTimer;
+
         zombieSpawnPoint = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
-}
+    }
 
     private void Update()
     {
-        if (unearthed == false)
+        if(currentGraveUnearthTime >= 0)
         {
-            currentTime -= 1 * Time.deltaTime;
-            if (currentTime >= unearthTimer)
+            currentGraveUnearthTime -= Time.deltaTime;
+        }
+        else
+        {
+            coll.enabled = true;
+            if (currentZombieSpawnTime >= 0)
             {
-                StartCoroutine(Unearth());
+                currentZombieSpawnTime -= Time.deltaTime;
+            }
+            else
+            {
+                SpawnZombie();
+                currentZombieSpawnTime = zombieSpawnTime;
             }
         }
-        else if(unearthed == true && zombieSpawnTime == true)
-        {
-            SpawnZombie();
-        }
-    }
-
-    private IEnumerator Unearth()
-    {
-        anim.SetBool("IsUnearthed", true);
-        yield return new WaitForSeconds(2);
-        unearthed = true;
-        zombieSpawnTime = true;
     }
 
     private void SpawnZombie()
     {
-        //Instantiate(zombie, zombieSpawnPoint, transform.rotation);
-        zombieSpawnTime = false;
+        Instantiate(zombie, zombieSpawnPoint, transform.rotation);
     }
 }
