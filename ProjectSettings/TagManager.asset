@@ -51,6 +51,9 @@ TagManager:
   - name: Building
     uniqueID: 1302479481
     locked: 0
+  - name: Grave
+    uniqueID: 764202719
+    locked: 0
   - name: Player
     uniqueID: 583834141
     locked: 0

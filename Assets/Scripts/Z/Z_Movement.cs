@@ -23,9 +23,9 @@ public class Z_Movement : MonoBehaviour
     private Vector3 mousePos;
     private Vector2 pointerInput;
 
+    //Gun Variables
     private Gun_Parent gunParent;
     [SerializeField] private Camera_Target camTar;
-
     [SerializeField] private InputActionReference movement, shoot, pointerPos;
 
     //Health Variables
@@ -78,6 +78,7 @@ public class Z_Movement : MonoBehaviour
         }
     }
 
+    //Get mouse position
     private Vector2 GetPointerPosition()
     {
         mousePos = pointerPos.action.ReadValue<Vector2>();
@@ -120,7 +121,7 @@ public class Z_Movement : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Died");
+        
     }
 
     public Vector3 GetPosition()

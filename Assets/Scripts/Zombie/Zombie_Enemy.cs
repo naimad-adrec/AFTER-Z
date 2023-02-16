@@ -22,6 +22,7 @@ public class Zombie_Enemy : MonoBehaviour
     //Health Variables
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
+    private bool isDead = false;
 
     //Attack Variables
     private int attackRange = 1;
@@ -32,8 +33,6 @@ public class Zombie_Enemy : MonoBehaviour
 
     //Bullet Variables
     [SerializeField] private Bullet_Controller bullet;
-
-    private bool isDead = false;
 
     private void Start()
     {
@@ -49,6 +48,7 @@ public class Zombie_Enemy : MonoBehaviour
         {
             if(canAttack == true)
             {
+                //Attack player
                 aiPath.canMove = false;
                 hitZ = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), boxSize, 0f, zLayers);
                 StartCoroutine(AttackCooldown());
@@ -86,6 +86,7 @@ public class Zombie_Enemy : MonoBehaviour
         }
     }
 
+    //Take damage and die functions
     private void ZombieTakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -102,6 +103,8 @@ public class Zombie_Enemy : MonoBehaviour
         StartCoroutine(WaitForDeathAnim());
     }
 
+
+    //Timed functions
     private IEnumerator AttackCooldown()
     {
         canAttack = false;
