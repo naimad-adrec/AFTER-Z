@@ -34,6 +34,7 @@ public class Z_Movement : MonoBehaviour
     //Health Variables
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
+    public bool isDead = false;
 
     private void Start()
     {
@@ -55,16 +56,20 @@ public class Z_Movement : MonoBehaviour
         zPosition = transform.position;
         gunParent.pointerPos = pointerInput;
         camTar.mousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
-        playerInput = movement.action.ReadValue<Vector2>();
-
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
-        if (zDirection.x < 0f)
+
+        if (isDead == false)
         {
-            sp.flipX = true;
-        }
-        else if (zDirection.x > 0f)
-        {
-            sp.flipX = false;
+            playerInput = movement.action.ReadValue<Vector2>();
+
+            if (zDirection.x < 0f)
+            {
+                sp.flipX = true;
+            }
+            else if (zDirection.x > 0f)
+            {
+                sp.flipX = false;
+            }
         }
     }
 
@@ -124,7 +129,12 @@ public class Z_Movement : MonoBehaviour
 
     private void Die()
     {
-        
+        coll.enabled = false;
+        isDead = true;
+        anim.SetBool("IsDead", true);
+        gunParent.gameObject.SetActive(false);
+        gunParent.ammoCount = 0;
+        playerInput = new Vector2(0, 0);
     }
 
     public Vector3 GetPosition()

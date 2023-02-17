@@ -35,6 +35,8 @@ public class Zombie_Enemy : MonoBehaviour
     //Bullet Variables
     [SerializeField] private Bullet_Controller bullet;
 
+    //Z Variables
+    private bool zIsDead;
     private Vector3 zNewPosition;
 
     IAstarAI ai;
@@ -60,27 +62,32 @@ public class Zombie_Enemy : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         currentHealth = maxHealth;
         canAttack = true;
-        zNewPosition = Z_Movement.Instance.zPosition;
     }
 
     private void Update()
     {
         zNewPosition = Z_Movement.Instance.zPosition;
+        zIsDead = Z_Movement.Instance.isDead;
 
         if (rb != null && ai != null) ai.destination = zNewPosition;
 
         if (Vector3.Distance(gameObject.transform.position, zNewPosition) < attackRange)
         {
-            if(canAttack == true)
+            if(canAttack == true && zIsDead == false)
             {
                 //Attack player
                 aiPath.canMove = false;
+                anim.SetTrigger("ZombieAttack");
                 hitZ = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), boxSize, 0f, zLayers);
                 StartCoroutine(AttackCooldown());
                 foreach (Collider2D player in hitZ)
                 {
                     player.GetComponent<Z_Movement>().TakeDamage(attackDamage);
                 }
+            }
+            else if (canAttack == true && zIsDead == true)
+            {
+
             }
             else if (canAttack == false && isDead == false)
             {
@@ -103,7 +110,7 @@ public class Zombie_Enemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -115,6 +122,7 @@ public class Zombie_Enemy : MonoBehaviour
     private void ZombieTakeDamage(int damage)
     {
         currentHealth -= damage;
+        anim.SetTrigger("ZombieHurt");
 
         if (currentHealth <= 0)
         {

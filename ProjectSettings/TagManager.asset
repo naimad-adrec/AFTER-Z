@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Grave
   layers:
   - Default
   - TransparentFX
@@ -50,9 +51,6 @@ TagManager:
     locked: 0
   - name: Building
     uniqueID: 1302479481
-    locked: 0
-  - name: Grave
-    uniqueID: 764202719
     locked: 0
   - name: Player
     uniqueID: 583834141

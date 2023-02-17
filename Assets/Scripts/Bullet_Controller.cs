@@ -6,8 +6,11 @@ public class Bullet_Controller : MonoBehaviour
 {
     public int bulletDamage = 33;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (!collision.gameObject.CompareTag("Grave"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

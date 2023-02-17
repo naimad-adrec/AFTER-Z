@@ -10,6 +10,8 @@ public class Gun_Parent : MonoBehaviour
 
     [SerializeField] private float bulletForce = 20f;
 
+    public int ammoCount = 8;
+
     private void Update()
     {
         Vector2 direction = (pointerPos - (Vector2)transform.position).normalized;
@@ -29,8 +31,16 @@ public class Gun_Parent : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);
+        if(ammoCount > 0)
+        {
+            ammoCount -= 1;
+            GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);           
+        }
+        else
+        {
+
+        }
     }
 }
