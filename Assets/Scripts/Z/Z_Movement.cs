@@ -33,7 +33,7 @@ public class Z_Movement : MonoBehaviour
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
-    private int currentHealth;
+    [HideInInspector] public int currentHealth;
     [HideInInspector] public bool isDead = false;
 
     private void Start()

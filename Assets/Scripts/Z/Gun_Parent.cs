@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Gun_Parent : MonoBehaviour
 {
-    public static Gun_Parent Instance { get; private set; }
     public Vector2 pointerPos { get; set; }
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
@@ -37,7 +36,7 @@ public class Gun_Parent : MonoBehaviour
             ammoCount -= 1;
             GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);           
+            rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);
         }
         else
         {
