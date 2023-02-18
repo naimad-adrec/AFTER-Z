@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 262581019}
   - component: {fileID: 262581018}
   - component: {fileID: 262581017}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 446887983}
   - component: {fileID: 446887982}
   - component: {fileID: 446887981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +485,7 @@ GameObject:
   - component: {fileID: 499193887}
   - component: {fileID: 499193886}
   - component: {fileID: 499193885}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -630,6 +630,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -737,6 +738,102 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!82 &519420034
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f19f5b79707b74d8a92bdd6a23cdb1a1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &533895543
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +933,7 @@ GameObject:
   - component: {fileID: 579432304}
   - component: {fileID: 579432303}
   - component: {fileID: 579432302}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33987,7 +34084,7 @@ GameObject:
   - component: {fileID: 822949580}
   - component: {fileID: 822949579}
   - component: {fileID: 822949578}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34175,7 +34272,7 @@ GameObject:
   - component: {fileID: 967710308}
   - component: {fileID: 967710307}
   - component: {fileID: 967710306}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -34321,7 +34418,7 @@ GameObject:
   - component: {fileID: 1013179091}
   - component: {fileID: 1013179090}
   - component: {fileID: 1013179089}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -34471,7 +34568,7 @@ GameObject:
   - component: {fileID: 1187296492}
   - component: {fileID: 1187296491}
   - component: {fileID: 1187296490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34658,7 +34755,7 @@ GameObject:
   - component: {fileID: 1445700341}
   - component: {fileID: 1445700340}
   - component: {fileID: 1445700339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40068,7 +40165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: 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
+    dataString: UEsDBBQAAAgIAACAn+v4n7HqYAIAABUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMziUDBkrTW+sQ0kMCE9LJxZdFXmMNsuSRZD6S4b9XK9vYJaco773dffthPplQtkTutFkakT7rFNnPAaM3+zboyCc8wU6rjfjAVvMuUpeTCILmFZzQHh9TmNUFOiP4L7WTJB55sFIi06ZYpDuMtXXWwxlIi54y2lG08tDngJ38n+E9hZz9K5rT68O/7keDi39yVA5NJ22Fw/ndrFHWwkpxCUWJKbnu9NNZEzCdBZny/TQK8s61lMI2Zpg7l6HZTZmjQeo2FeB7CwbGoWCOYpc7ctqPXmWZRdfYM3B+EMYPqU7Lfut6cgXYfW3sALKiQt+nwVOd8/kLPRwHOjO6eGrLjkdUwuWC71/hzMG63mT78EPPeRjPEeQethLfc1Qveml0pVJPOlNRaGUxeuj+vXYW58j3HV5bvQGr8ut+2jVSD5fQ/CmWotgSdTetgY3UYd5h+2j8Zv54w+E2bJPCo+Tir8U32PWPqCEehbHOU02XiuxtdWVIyhZhZtRN5WJtFAa4MV2iAunOa5/G3W7whuuVvWEegT6XpnjDtV/BTUiAO/1odEOt9fG6LJvr4zPafFU5KRR2pol48XOKtVL1gfVn0oZtKpMB74XtKpH+f1oMIhj/wMlssp3yLfBsOMfZbDKdR9Ekgnk0H7Nwe0L5PkGua6PNePzWVJdc+Ttrf0UGSwNlOPbUwHEpPgrdG7lQmd5wg6hWdYarcTS+iP8q00Uq/IA26JxQYd/sM2FS8z2myTVREjpdnJyBpMuSsFIctCMkYXH42UgYwddbXhs8CDxS8TbZhV3+AVBLAwQUAAAICAAAgJ/rgtqgHHMAAACEAAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGIE4pZkpIHa0UqJRoqFFqrGpcZJJclJicpqueaqpqbGJuZGRsVGiuZG5oZKOQl5pTk4sUFdJZUGqX2JuKkRnQGJJRlpmXkpmXrqee1FmijvIApjqWgBQSwECLQAUAAAICAAAgJ/r+J+x6mACAAAVBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/rgtqgHHMAAACEAAAACQAkAAAAAAAAAAAAAACtAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGsDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -40358,7 +40455,7 @@ GameObject:
   - component: {fileID: 1811875288}
   - component: {fileID: 1811875287}
   - component: {fileID: 1811875286}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -40503,7 +40600,7 @@ GameObject:
   - component: {fileID: 1823915106}
   - component: {fileID: 1823915105}
   - component: {fileID: 1823915104}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40629,7 +40726,7 @@ GameObject:
   - component: {fileID: 1910278573}
   - component: {fileID: 1910278572}
   - component: {fileID: 1910278571}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -40837,7 +40934,7 @@ GameObject:
   - component: {fileID: 2032300055}
   - component: {fileID: 2032300054}
   - component: {fileID: 2032300053}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}
@@ -41070,7 +41167,7 @@ GameObject:
   - component: {fileID: 2133978899}
   - component: {fileID: 2133978898}
   - component: {fileID: 2133978897}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41259,6 +41356,10 @@ PrefabInstance:
       propertyPath: camTar
       value: 
       objectReference: {fileID: 78916805}
+    - target: {fileID: 231275329507601757, guid: 10bd70135a54b4bb8ba4d6419c99ab20, type: 3}
+      propertyPath: zombieLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 231275329507601761, guid: 10bd70135a54b4bb8ba4d6419c99ab20, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -41542,6 +41643,14 @@ PrefabInstance:
     - target: {fileID: 6094973249296520195, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094973249296520197, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
+      propertyPath: autoRepath.mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094973249296520197, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
+      propertyPath: autoRepath.maximumInterval
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6094973249296520198, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
       propertyPath: target

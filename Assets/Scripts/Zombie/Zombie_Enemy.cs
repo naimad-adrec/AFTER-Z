@@ -4,6 +4,8 @@ using Pathfinding;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using System;
+using Unity.VisualScripting;
+using UnityEngine.Events;
 
 public class Zombie_Enemy : MonoBehaviour
 {
@@ -12,8 +14,10 @@ public class Zombie_Enemy : MonoBehaviour
     [SerializeField] private Animator anim;
     private BoxCollider2D coll;
     private Rigidbody2D rb;
+    private AudioSource aud;
 
     //Instance
+    public static Zombie_Enemy Instance { get; private set; }
 
     //BoxCast Variables
     [SerializeField] private LayerMask zLayers;
@@ -32,10 +36,15 @@ public class Zombie_Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 2;
     private bool canAttack;
 
+    //Audio Variables
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip die;
+
     //Bullet Variables
     [SerializeField] private Bullet_Controller bullet;
 
     //Z Variables
+    private GameObject z;
     private bool zIsDead;
     private Vector3 zNewPosition;
 
@@ -60,6 +69,7 @@ public class Zombie_Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        aud = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         canAttack = true;
     }
@@ -76,6 +86,8 @@ public class Zombie_Enemy : MonoBehaviour
             if(canAttack == true && zIsDead == false)
             {
                 //Attack player
+                aud.clip = attackSound;
+                aud.Play();
                 aiPath.canMove = false;
                 anim.SetTrigger("ZombieAttack");
                 hitZ = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y), boxSize, 0f, zLayers);
@@ -87,6 +99,7 @@ public class Zombie_Enemy : MonoBehaviour
             }
             else if (canAttack == true && zIsDead == true)
             {
+                coll.enabled = true;
                 anim.SetBool("IsEating", true);
             }
             else if (canAttack == false && isDead == false)
@@ -106,7 +119,12 @@ public class Zombie_Enemy : MonoBehaviour
             else
             {
                 aiPath.canMove = true;
-            }    
+            }
+
+            if (canAttack == true && zIsDead == true)
+            {
+                coll.enabled = false;
+            }
         }
     }
 
@@ -130,6 +148,7 @@ public class Zombie_Enemy : MonoBehaviour
         }
     }
 
+
     private void Die()
     {
         StartCoroutine(WaitForDeathAnim());
@@ -148,6 +167,8 @@ public class Zombie_Enemy : MonoBehaviour
 
     private IEnumerator WaitForDeathAnim()
     {
+        aud.clip = die;
+        aud.Play();
         anim.SetBool("IsDead", true);
         isDead = true;
         coll.enabled = false;

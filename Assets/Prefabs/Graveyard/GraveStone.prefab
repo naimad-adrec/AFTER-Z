@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2172707257481014759}
   - component: {fileID: 2172707257481011736}
   - component: {fileID: 2172707257481014757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GraveStone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 2172707258211448961}
   - component: {fileID: 2172707258211448962}
   - component: {fileID: 2172707258211448963}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Grave Hole
   m_TagString: Grave
   m_Icon: {fileID: 0}

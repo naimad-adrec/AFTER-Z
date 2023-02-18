@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b154ce3206cde44c88ce27412c192da9
+guid: 7b6a375e85e49449f808979db99f3cda
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zomAttack_0
+      name: ZshovelStrike_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33ac27540098b4424aba3401c5cb591e
-      internalID: 1044380447
+      spriteID: 59f1c21af72364252ae06d2aed2646e6
+      internalID: 1659838074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_1
+      name: ZshovelStrike_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32594985761e34a10ae5e9069b05833f
-      internalID: -781312583
+      spriteID: faf2f7d07ffc7415497e3a3cfe627c0b
+      internalID: -1816036545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_2
+      name: ZshovelStrike_2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6488181f819f94e1b8f1e243b08d732b
-      internalID: -1898664294
+      spriteID: 105af74f6fa934498922eceecaf10028
+      internalID: -543178793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_3
+      name: ZshovelStrike_3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70a46d6e3446f4e288851b1eb49f275c
-      internalID: -819658693
+      spriteID: 601ef7083a4204bd788c02bd9626e509
+      internalID: 1522028767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_4
+      name: ZshovelStrike_4
       rect:
         serializedVersion: 2
         x: 128
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3c5577119a2148599fb41fd9c6bb6d8
-      internalID: 863613070
+      spriteID: b00d7c5d902834cc8a699d64f78a8b78
+      internalID: -1494361391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_5
+      name: ZshovelStrike_5
       rect:
         serializedVersion: 2
         x: 160
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54d23a062cffd4545b757ff3323945ba
-      internalID: -1972341623
+      spriteID: 0cc592aa05f3d42459225826bdeeb68e
+      internalID: 1216992858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_6
+      name: ZshovelStrike_6
       rect:
         serializedVersion: 2
         x: 192
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2ad3fdb35494465c8a6f720b7b8f059
-      internalID: 2069611026
+      spriteID: 8e63c1097bd5f4b4783078bf9c42ede6
+      internalID: -365190611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zomAttack_7
+      name: ZshovelStrike_7
       rect:
         serializedVersion: 2
         x: 224
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4a638628aaab49cfa8d7c700b754a46
-      internalID: 415871065
+      spriteID: ee7cc2faa2dc843859618a0b465c3d20
+      internalID: -1996047327
       vertices: []
       indices: 
       edges: []
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      zomAttack_1: -781312583
-      zomAttack_7: 415871065
-      zomAttack_6: 2069611026
-      zomAttack_3: -819658693
-      zomAttack_0: 1044380447
-      zomAttack_4: 863613070
-      zomAttack_2: -1898664294
-      zomAttack_5: -1972341623
+      ZshovelStrike_1: -1816036545
+      ZshovelStrike_5: 1216992858
+      ZshovelStrike_6: -365190611
+      ZshovelStrike_7: -1996047327
+      ZshovelStrike_3: 1522028767
+      ZshovelStrike_0: 1659838074
+      ZshovelStrike_2: -543178793
+      ZshovelStrike_4: -1494361391
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

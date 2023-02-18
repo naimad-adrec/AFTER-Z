@@ -11,6 +11,7 @@ public class Zombie_Z_Move : MonoBehaviour
     private Transform trans;
     private SpriteRenderer sp;
     private Animator anim;
+    private AudioSource aud;
 
     //Instance
     public static Zombie_Z_Move Instance { get; private set; }
@@ -32,6 +33,11 @@ public class Zombie_Z_Move : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
     [HideInInspector] public bool zombieZIsDead = false;
+
+    //Audio Variables
+    
+    //[SerializeField] private AudioClip ;
+
 
     private void Start()
     {
