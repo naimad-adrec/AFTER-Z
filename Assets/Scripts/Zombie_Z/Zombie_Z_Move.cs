@@ -58,11 +58,27 @@ public class Zombie_Z_Move : MonoBehaviour
 
             if (playerInput.x < 0f)
             {
+                anim.SetFloat("Horizontal", -1f);
+                anim.SetFloat("Vertical", 0f);
                 sp.flipX = true;
             }
             else if (playerInput.x > 0f)
             {
+                anim.SetFloat("Horizontal", 1f);
+                anim.SetFloat("Vertical", 0f);
                 sp.flipX = false;
+            }
+            else if(playerInput.y > 0f)
+            {
+                sp.flipX = false;
+                anim.SetFloat("Vertical", 1f);
+                anim.SetFloat("Horizontal", 0f);
+            }
+            else if (playerInput.y < 0f)
+            {
+                sp.flipX = false;
+                anim.SetFloat("Vertical", -1f);
+                anim.SetFloat("Horizontal", 0f);
             }
         }
     }
