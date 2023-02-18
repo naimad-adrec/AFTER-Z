@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Gun_Parent : MonoBehaviour
 {
+    public static Gun_Parent Instance { get; private set; }
     public Vector2 pointerPos { get; set; }
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
 
     [SerializeField] private float bulletForce = 20f;
+
+    public int ammoCount = 8;
 
     private void Update()
     {
@@ -29,8 +32,16 @@ public class Gun_Parent : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);
+        if(ammoCount > 0)
+        {
+            ammoCount -= 1;
+            GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);           
+        }
+        else
+        {
+
+        }
     }
 }

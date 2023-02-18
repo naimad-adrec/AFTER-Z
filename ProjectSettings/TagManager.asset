@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Grave
+  - Ammo
+  - Health
   layers:
   - Default
   - TransparentFX
@@ -45,14 +48,14 @@ TagManager:
   - name: Ground
     uniqueID: 2636160003
     locked: 0
+  - name: Collectible
+    uniqueID: 4064537223
+    locked: 0
   - name: Enemy
     uniqueID: 536146397
     locked: 0
   - name: Building
     uniqueID: 1302479481
-    locked: 0
-  - name: Grave
-    uniqueID: 764202719
     locked: 0
   - name: Player
     uniqueID: 583834141
