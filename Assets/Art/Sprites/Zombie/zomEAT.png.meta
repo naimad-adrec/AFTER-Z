@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6dc5fd0e3c364b70a6f399de4d83bea
+guid: 1cc11c007b83445559a7122ae7aba0e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthDrop_0
+      name: zomEAT_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c734b08ee3244e7287fe8f12ab174dd
-      internalID: 581519273
+      spriteID: d92916acd89c3429c8f328088b33fb7f
+      internalID: 339773296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthDrop_1
+      name: zomEAT_1
       rect:
         serializedVersion: 2
         x: 32
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d712da6eda83944ceaf229038de9b2ed
-      internalID: 920749594
+      spriteID: cdc0e364de3d3478380da0937d553443
+      internalID: -333503071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthDrop_2
+      name: zomEAT_2
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d30787ea79d54282a08e1217c26a1db
-      internalID: 1369004290
+      spriteID: 26c241055204a43d2bc7c232742af68a
+      internalID: -350982102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthDrop_3
+      name: zomEAT_3
       rect:
         serializedVersion: 2
         x: 96
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 085f5721f40cb47439b7d2595d0937b8
-      internalID: 334314117
+      spriteID: 3b6d1b6716965401e827f8cfb0365900
+      internalID: 705850939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthDrop_4
+      name: zomEAT_4
       rect:
         serializedVersion: 2
         x: 128
@@ -215,8 +215,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5621753b542864e9c933766de43d158a
-      internalID: 147433766
+      spriteID: a76c1436543f94550a9bdb5ca0445751
+      internalID: -45509723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zomEAT_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fbc18c3eb5014183b58c7639230dcd9
+      internalID: -1471843736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zomEAT_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33fc54900b39c4881a26992530698e41
+      internalID: 820888209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zomEAT_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef31366cfde264916a4c7d64fb88bc77
+      internalID: -1096935208
       vertices: []
       indices: 
       edges: []
@@ -232,11 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HealthDrop_1: 920749594
-      HealthDrop_3: 334314117
-      HealthDrop_2: 1369004290
-      HealthDrop_0: 581519273
-      HealthDrop_4: 147433766
+      zomEAT_7: -1096935208
+      zomEAT_4: -45509723
+      zomEAT_6: 820888209
+      zomEAT_1: -333503071
+      zomEAT_5: -1471843736
+      zomEAT_0: 339773296
+      zomEAT_2: -350982102
+      zomEAT_3: 705850939
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

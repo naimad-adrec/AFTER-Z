@@ -87,7 +87,7 @@ public class Zombie_Enemy : MonoBehaviour
             }
             else if (canAttack == true && zIsDead == true)
             {
-
+                anim.SetBool("IsEating", true);
             }
             else if (canAttack == false && isDead == false)
             {

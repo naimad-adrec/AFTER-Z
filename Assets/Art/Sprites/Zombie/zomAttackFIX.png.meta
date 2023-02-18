@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff2e7c6911e0f461e866ec232e40ecbd
+guid: 587127387ad304ef8b359086ac86b14d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BULLET_0
+      name: zomAttackFIX_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,41 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f8255c87b2b0a04d9e4cdd44171f45f
-      internalID: 155290908
+      spriteID: f8b9d08f48731424eb11b16eb024e0e3
+      internalID: 525941226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BULLET_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9983c9eff03f289458ac4e4e6b7cab0e
-      internalID: -2009077843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BULLET_2
+      name: zomAttackFIX_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,41 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb15c6c186956744cbb5da8f24d848a3
-      internalID: -1492706742
+      spriteID: 188d1f7bca5cc4b0bab57dab66544d3e
+      internalID: 1379644200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BULLET_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 196297a0d3876144eb8e3cf1aa1cb796
-      internalID: -247900948
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BULLET_4
+      name: zomAttackFIX_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,41 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c5404923b730c9409c8714eb8fbb1a5
-      internalID: -19169831
+      spriteID: 3c6f15fb1cadf42f58158234b080cc86
+      internalID: 1032473188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BULLET_5
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d104a9634a4430840845912aeee69a97
-      internalID: 1006048267
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BULLET_6
+      name: zomAttackFIX_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 271b30eb75c04134096e48b1d1fcb928
-      internalID: 1156692040
+      spriteID: c0627f64ea71a4a2e85654ae6b496de7
+      internalID: 1098115970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BULLET_7
+      name: zomAttackFIX_4
       rect:
         serializedVersion: 2
-        x: 112
+        x: 128
         y: 0
-        width: 16
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,8 +215,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aad99b8337483b448fadd11945621ff
-      internalID: -1676640522
+      spriteID: 8192ffe5f20c1480ea3dfc40b0ee6c7f
+      internalID: 1210596298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zomAttackFIX_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161a55ea992c04d8b89bd5802d7cf824
+      internalID: 363683697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zomAttackFIX_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64a0a4c90dde46e790818b24ad422d0
+      internalID: 1154533263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zomAttackFIX_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b63e25494da49e982488df9f9de7f5
+      internalID: -1528046978
       vertices: []
       indices: 
       edges: []
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BULLET_3: -247900948
-      BULLET_2: -1492706742
-      BULLET_0: 155290908
-      BULLET_7: -1676640522
-      BULLET_4: -19169831
-      BULLET_1: -2009077843
-      BULLET_5: 1006048267
-      BULLET_6: 1156692040
+      zomAttackFIX_4: 1210596298
+      zomAttackFIX_1: 1379644200
+      zomAttackFIX_6: 1154533263
+      zomAttackFIX_0: 525941226
+      zomAttackFIX_2: 1032473188
+      zomAttackFIX_5: 363683697
+      zomAttackFIX_7: -1528046978
+      zomAttackFIX_3: 1098115970
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

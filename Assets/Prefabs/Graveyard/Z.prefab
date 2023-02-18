@@ -48,6 +48,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1391929082671402260, guid: 09017e52516b54c7b9fd291d0b330622, type: 3}
   firingPoint: {fileID: 231275330100223673}
   bulletForce: 20
+  ammoCount: 8
 --- !u!1 &231275329118310822
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 231275329507601763}
   m_Layer: 7
   m_Name: Z
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,6 +263,7 @@ MonoBehaviour:
   shoot: {fileID: -2717748869268994693, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   pointerPos: {fileID: -98186982936080166, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   maxHealth: 100
+  isDead: 0
 --- !u!95 &231275329507601760
 Animator:
   serializedVersion: 4
@@ -295,7 +297,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03419295, y: -0.6021447}
+  m_Offset: {x: -0.010509193, y: -0.63741684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -306,7 +308,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35874265, y: 0.5372461}
+  m_Size: {x: 0.55572087, y: 0.4667018}
   m_EdgeRadius: 0
 --- !u!1 &231275330100223670
 GameObject:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6dc5fd0e3c364b70a6f399de4d83bea
+guid: 104266cc52056444680dfbe41a650793
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealthDrop_0
+      name: BULLETNew_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c734b08ee3244e7287fe8f12ab174dd
-      internalID: 581519273
+      spriteID: 71a2e3e9a432940c6938d3c178c09176
+      internalID: 741326648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealthDrop_1
+      name: BULLETNew_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,71 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d712da6eda83944ceaf229038de9b2ed
-      internalID: 920749594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealthDrop_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d30787ea79d54282a08e1217c26a1db
-      internalID: 1369004290
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealthDrop_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 085f5721f40cb47439b7d2595d0937b8
-      internalID: 334314117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealthDrop_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5621753b542864e9c933766de43d158a
-      internalID: 147433766
+      spriteID: 4b4891e3838e846b1aab73420eaebda3
+      internalID: 1307676425
       vertices: []
       indices: 
       edges: []
@@ -232,11 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HealthDrop_1: 920749594
-      HealthDrop_3: 334314117
-      HealthDrop_2: 1369004290
-      HealthDrop_0: 581519273
-      HealthDrop_4: 147433766
+      BULLETNew_1: 1307676425
+      BULLETNew_0: 741326648
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

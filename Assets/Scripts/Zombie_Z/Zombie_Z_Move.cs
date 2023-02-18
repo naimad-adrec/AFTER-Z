@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
-public class Z_Movement : MonoBehaviour
+public class Zombie_Z_Move : MonoBehaviour
 {
     //Game Element Variables
     private Rigidbody2D rb;
@@ -15,58 +13,54 @@ public class Z_Movement : MonoBehaviour
     private Animator anim;
 
     //Instance
-    public static Z_Movement Instance { get; private set; }
+    public static Zombie_Z_Move Instance { get; private set; }
 
     //Movement Variables
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
-    [HideInInspector] public Vector3 zPosition;
+    [HideInInspector] public Vector3 zombie_Z_Position;
 
     //Mouse Variables
     private Vector3 mousePos;
     private Vector2 pointerInput;
 
     //Gun Variables
-    private Gun_Parent gunParent;
     [SerializeField] private Camera_Target camTar;
-    [SerializeField] private InputActionReference movement, shoot, pointerPos;
+    [SerializeField] private InputActionReference movement, attack, pointerPos;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
-    [HideInInspector] public bool isDead = false;
+    [HideInInspector] public bool zombieZIsDead = false;
 
     private void Start()
     {
-        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         trans = GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        gunParent = GetComponentInChildren<Gun_Parent>();
 
-        zPosition = transform.position;
+        zombie_Z_Position = transform.position;
         currentHealth = maxHealth;
     }
 
     private void Update()
     {
         pointerInput = GetPointerPosition();
-        zPosition = transform.position;
-        gunParent.pointerPos = pointerInput;
-        camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
+        zombie_Z_Position = transform.position;
+        camTar.camMousePos = new Vector3(pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
 
-        if (isDead == false)
+        if (zombieZIsDead == false)
         {
             playerInput = movement.action.ReadValue<Vector2>();
 
-            if (zDirection.x < 0f)
+            if (playerInput.x < 0f)
             {
                 sp.flipX = true;
             }
-            else if (zDirection.x > 0f)
+            else if (playerInput.x > 0f)
             {
                 sp.flipX = false;
             }
@@ -96,31 +90,22 @@ public class Z_Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        shoot.action.performed += PerformShoot;
+        attack.action.performed += PerformAttack;
     }
 
     private void OnDisable()
     {
-        shoot.action.performed -= PerformShoot;
+        attack.action.performed -= PerformAttack;
     }
 
-    private void PerformShoot(InputAction.CallbackContext obj)
+    private void PerformAttack(InputAction.CallbackContext obj)
     {
-        if(gunParent == null)
-        {
-            Debug.Log("Gun_Parent is null");
-            return;
-        }
-        else
-        {
-            gunParent.Shoot();
-        }
+        //Perform Attack
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -131,10 +116,8 @@ public class Z_Movement : MonoBehaviour
     private void Die()
     {
         coll.enabled = false;
-        isDead = true;
+        zombieZIsDead = true;
         anim.SetBool("IsDead", true);
-        gunParent.gameObject.SetActive(false);
-        gunParent.ammoCount = 0;
         playerInput = new Vector2(0, 0);
     }
 
@@ -145,14 +128,6 @@ public class Z_Movement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Ammo"))
-        {
-            gunParent.ammoCount = 8;
-        }
-        if (collision.gameObject.CompareTag("Health"))
-        {
-            currentHealth += 33;
-            Debug.Log(currentHealth);
-        }
+
     }
 }

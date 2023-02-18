@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gun_Parent : MonoBehaviour
 {
+    public static Gun_Parent Instance { get; private set; }
     public Vector2 pointerPos { get; set; }
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
