@@ -44,6 +44,9 @@ public class DeathManager : MonoBehaviour
     //SceneManager.LoadScene();
 
 
-    //public void ReturnMenu()
-    // SceneManager.LoadScene();
+    public void ReturnMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
 }

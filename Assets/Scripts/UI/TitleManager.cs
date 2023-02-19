@@ -8,13 +8,16 @@ using UnityEngine.SceneManagement;
 public class TitleManager : MonoBehaviour
 {
 
-   // public void MainPlayButton()
+   public void MainPlayButton()
+   {
+        SceneManager.LoadScene(1);
+   }
     
+    public void HowToPlayButton()
+    {
         //SceneManager.LoadScene();
+    }
     
-
-    //public void HowToPlayButton()
-    
-       // SceneManager.LoadScene();
+       
    
 }
