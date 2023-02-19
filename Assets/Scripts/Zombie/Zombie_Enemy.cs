@@ -6,6 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Zombie_Enemy : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Zombie_Enemy : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
     private bool isDead = false;
+    [SerializeField] private GameObject ammo;
+    private int chance;
 
     //Attack Variables
     private int attackRange = 1;
@@ -141,6 +144,8 @@ public class Zombie_Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         anim.SetTrigger("ZombieHurt");
+        chance = Random.Range(0, 7);
+        Debug.Log(chance);
 
         if (currentHealth <= 0)
         {
@@ -152,6 +157,10 @@ public class Zombie_Enemy : MonoBehaviour
     private void Die()
     {
         StartCoroutine(WaitForDeathAnim());
+        if (chance == 1)
+        {
+            Instantiate(ammo, transform.position, transform.rotation);
+        }
     }
 
 
@@ -160,7 +169,6 @@ public class Zombie_Enemy : MonoBehaviour
     {
         canAttack = false;
         aiPath.canMove = true;
-        Debug.Log("Player hit");
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }

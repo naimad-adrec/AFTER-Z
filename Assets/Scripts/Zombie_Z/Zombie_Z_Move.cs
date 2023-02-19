@@ -25,9 +25,12 @@ public class Zombie_Z_Move : MonoBehaviour
     private Vector3 mousePos;
     private Vector2 pointerInput;
 
-    //Gun Variables
+    //Attack Variables
     [SerializeField] private Camera_Target camTar;
     [SerializeField] private InputActionReference movement, attack, pointerPos;
+    [SerializeField] private LayerMask npcLayers;
+    private Collider2D[] hitNPC;
+    private int attackDamage = 50;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -71,20 +74,20 @@ public class Zombie_Z_Move : MonoBehaviour
             else if (playerInput.x > 0f)
             {
                 anim.SetFloat("Horizontal", 1f);
-                anim.SetFloat("Vertical", 0f);
+                anim.SetFloat("Vertical", 0f);            
                 sp.flipX = false;
             }
             else if(playerInput.y > 0f)
             {
                 sp.flipX = false;
                 anim.SetFloat("Vertical", 1f);
-                anim.SetFloat("Horizontal", 0f);
+                anim.SetFloat("Horizontal", 0f);              
             }
             else if (playerInput.y < 0f)
             {
                 sp.flipX = false;
                 anim.SetFloat("Vertical", -1f);
-                anim.SetFloat("Horizontal", 0f);
+                anim.SetFloat("Horizontal", 0f);              
             }
         }
     }
@@ -123,6 +126,43 @@ public class Zombie_Z_Move : MonoBehaviour
     private void PerformAttack(InputAction.CallbackContext obj)
     {
         //Perform Attack
+       
+        if (playerInput.x < 0f)
+        {
+            anim.SetFloat("Horizontal", -1f);
+            anim.SetFloat("Vertical", 0f);
+            anim.SetTrigger("Attack");
+            hitNPC = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(2, 3), 0f, npcLayers);
+            sp.flipX = true;
+        }
+        else if (playerInput.x > 0f)
+        {
+            anim.SetFloat("Horizontal", 1f);
+            anim.SetFloat("Vertical", 0f);
+            anim.SetTrigger("Attack");
+            hitNPC = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(2, 3), 0f, npcLayers);
+            sp.flipX = false;
+        }
+        else if (playerInput.y > 0f)
+        {
+            sp.flipX = false;
+            anim.SetFloat("Vertical", 1f);
+            anim.SetFloat("Horizontal", 0f);
+            anim.SetTrigger("Attack");
+            hitNPC = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y + 1.5f), new Vector2(2, 3), 0f, npcLayers);
+        }
+        else if (playerInput.y < 0f)
+        {
+            sp.flipX = false;
+            anim.SetFloat("Vertical", -1f);
+            anim.SetFloat("Horizontal", 0f);
+            anim.SetTrigger("Attack");
+            hitNPC = Physics2D.OverlapBoxAll(new Vector2(transform.position.x, transform.position.y - 1.5f), new Vector2(2, 3), 0f, npcLayers);
+        }
+        foreach (Collider2D npc in hitNPC)
+        {
+            npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+        }
     }
 
     public void TakeDamage(int damage)

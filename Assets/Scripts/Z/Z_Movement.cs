@@ -206,8 +206,6 @@ public class Z_Movement : MonoBehaviour
             {
                 currentHealth += 20;
             }
-            
-            Debug.Log(currentHealth);
         }
     }
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System;
 using System.Collections.Generic;
 
 namespace Pathfinding
@@ -20,6 +19,12 @@ namespace Pathfinding
     {
         /// <summary>The object that the AI should move to</summary>
         public Transform target;
+        private float runDistance = 7f;
+        private float wanderDistanceX;
+        private float wanderDistanceY;
+        private Vector3 distance;
+        private float idleTimer = 5f;
+        private float currentIdleTimer;
 
         IAstarAI ai;
 
@@ -41,7 +46,27 @@ namespace Pathfinding
         /// <summary>Updates the AI's destination every frame</summary>
         void Update()
         {
-            if (target != null && ai != null) ai.destination = target.position;
+            distance = transform.position - target.position;
+            if (distance.x < runDistance && distance.y < runDistance)
+            {
+                ai.maxSpeed = 7;
+                ai.destination = distance;
+            }
+            else
+            {
+                if (currentIdleTimer >= 0)
+                {
+                    currentIdleTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    ai.maxSpeed = 4f;
+                    wanderDistanceX = Random.Range(-5, 5);
+                    wanderDistanceY = Random.Range(-5, 5);
+                    ai.destination = new Vector3((transform.position.x + wanderDistanceX), (transform.position.y + wanderDistanceY), transform.position.z);
+                    currentIdleTimer = idleTimer;
+                }               
+            }
         }
     }
 }

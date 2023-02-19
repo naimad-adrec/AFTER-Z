@@ -292,6 +292,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxHealth: 50
+  ammo: {fileID: 64131162879218212, guid: 2c84fa2ea6c5c4d829e3fcfdbdeb19fa, type: 3}
   attackCooldown: 2
   attackSound: {fileID: 8300000, guid: 27bcaf8c7a4c5431b894fdbc89b2ecd3, type: 3}
   die: {fileID: 8300000, guid: b580498ed3e8b4b04ade16021c6dca88, type: 3}
