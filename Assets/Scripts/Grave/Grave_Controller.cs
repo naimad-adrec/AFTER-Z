@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Grave_Controller : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class Grave_Controller : MonoBehaviour
     private float currentZombieSpawnTime;
 
     //Unearthed Timers
+    [SerializeField] private GameObject ammo;
     private float graveUnearthTime;
     private float currentGraveUnearthTime;
-
+    private float currentCoverTime = 0;
+    private Vector3 graveAmmoSpawnPoint;
     private void Start()
     {
         coll = GetComponent<BoxCollider2D>();
@@ -33,6 +36,7 @@ public class Grave_Controller : MonoBehaviour
         currentGraveUnearthTime = graveUnearthTime;
 
         zombieSpawnPoint = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+        graveAmmoSpawnPoint = new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z);
     }
 
     private void Update()
@@ -64,6 +68,19 @@ public class Grave_Controller : MonoBehaviour
         if (zombieSpawnCount <= 2)
         {
             Instantiate(zombie, zombieSpawnPoint, transform.rotation, gameObject.transform);
+        }
+    }
+
+    public void CoverGrave()
+    {
+        currentCoverTime += Time.deltaTime;
+        if(currentCoverTime >= 3f)
+        {
+            currentGraveUnearthTime = graveUnearthTime;
+            currentZombieSpawnTime = zombieSpawnTime;
+            anim.SetBool("IsUnearthed", false);
+            Instantiate(ammo, graveAmmoSpawnPoint, transform.rotation);
+            currentCoverTime = 0;
         }
     }
 }

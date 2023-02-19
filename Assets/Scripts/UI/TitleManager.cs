@@ -9,11 +9,11 @@ public class TitleManager : MonoBehaviour
 
     public void MainPlayButton()
     {
-        SceneManager.LoadScene();
+        //SceneManager.LoadScene();
     }
 
     public void HowToPlayButton()
     {
-        SceneManager.LoadScene();
+        //SceneManager.LoadScene();
     }
 }

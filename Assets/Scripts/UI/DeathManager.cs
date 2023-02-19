@@ -10,12 +10,12 @@ public class DeathManager : MonoBehaviour
     
     public void PlayZombieMode()
     {
-        SceneManager.LoadScene();
+        //SceneManager.LoadScene();
     }
 
     
     public void ReturnMenu()
     {
-        SceneManager.LoadScene();
+        //SceneManager.LoadScene();
     }
 }

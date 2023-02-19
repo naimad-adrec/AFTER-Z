@@ -156,6 +156,7 @@ public class Zombie_Enemy : MonoBehaviour
 
     private void Die()
     {
+        Z_Movement.Instance.currentZombieKillcount += 1;
         StartCoroutine(WaitForDeathAnim());
         if (chance == 1)
         {
