@@ -30,7 +30,7 @@ public class Zombie_Z_Move : MonoBehaviour
     [SerializeField] private InputActionReference movement, attack, pointerPos;
     [SerializeField] private LayerMask npcLayers;
     private Collider2D[] hitNPC;
-    private int attackDamage = 50;
+    private int attackDamage = 100;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -161,7 +161,10 @@ public class Zombie_Z_Move : MonoBehaviour
         }
         foreach (Collider2D npc in hitNPC)
         {
-            npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+            if (npc.gameObject.CompareTag("NPC"))
+            {
+                npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+            }
         }
     }
 
