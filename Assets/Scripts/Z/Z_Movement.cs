@@ -45,6 +45,12 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool isDead = false;
+    [SerializeField] private DeathManager dm;
+
+    //Scene Variables
+    private float deathTimer = 4f;
+    private float currentDeathTimer;
+    public bool deathCanvasStatus = false;
     [HideInInspector] public int currentZombieKillcount = 0;
 
     private void Start()
@@ -61,10 +67,12 @@ public class Z_Movement : MonoBehaviour
         currentHealth = maxHealth;
 
         currentShovelCooldownTime = 0f;
+        currentDeathTimer = deathTimer;
     }
 
     private void Update()
     {
+        Debug.Log(currentDeathTimer);
         pointerInput = GetPointerPosition();
         zPosition = transform.position;
         gunParent.pointerPos = pointerInput;
@@ -83,6 +91,17 @@ public class Z_Movement : MonoBehaviour
             else if (zDirection.x > 0f)
             {
                 sp.flipX = false;
+            }
+        }
+        else
+        {
+            if (currentDeathTimer >= 0)
+            {
+                currentDeathTimer -= Time.deltaTime;
+            }
+            else
+            {
+                deathCanvasStatus = true;
             }
         }
 

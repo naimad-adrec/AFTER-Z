@@ -7,15 +7,41 @@ using UnityEngine.SceneManagement;
 
 public class DeathManager : MonoBehaviour
 {
-    
-    public void PlayZombieMode()
+    [SerializeField] private Canvas deathCanvas;
+    [SerializeField] private Image Qmark;
+    private bool currentStatus;
+
+    private void Start()
     {
-        //SceneManager.LoadScene();
+        deathCanvas.enabled = false;
+        Qmark.enabled = false;
     }
 
-    
-    public void ReturnMenu()
+    private void Update()
     {
-        //SceneManager.LoadScene();
+        currentStatus = Z_Movement.Instance.deathCanvasStatus;
+        if(currentStatus == true)
+        {
+            ChangeCanvas();
+            Invoke("QMarkEnable", 3);
+        }
     }
+
+    public void ChangeCanvas()
+    {   
+        deathCanvas.enabled = true;
+    }
+
+    private void QMarkEnable()
+    {
+        Qmark.enabled = true;
+    }
+
+
+    //public void PlayZombieMode()
+    //SceneManager.LoadScene();
+
+
+    //public void ReturnMenu()
+    // SceneManager.LoadScene();
 }
