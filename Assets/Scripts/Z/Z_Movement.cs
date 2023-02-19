@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.Events;
 
 public class Z_Movement : MonoBehaviour
 {
@@ -29,7 +31,14 @@ public class Z_Movement : MonoBehaviour
     //Gun Variables
     private Gun_Parent gunParent;
     [SerializeField] private Camera_Target camTar;
-    [SerializeField] private InputActionReference movement, shoot, pointerPos;
+    [SerializeField] private InputActionReference movement, shoot, pointerPos, strike;
+
+    //Shovel Variables
+    [SerializeField] private LayerMask zombieLayers;
+    private Collider2D[] hitZombies;
+    private float shovelCooldownTime = 5f;
+    private float currentShovelCooldownTime;
+    private bool canStrike = true;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -48,6 +57,8 @@ public class Z_Movement : MonoBehaviour
 
         zPosition = transform.position;
         currentHealth = maxHealth;
+
+        currentShovelCooldownTime = 0f;
     }
 
     private void Update()
@@ -70,6 +81,16 @@ public class Z_Movement : MonoBehaviour
             {
                 sp.flipX = false;
             }
+        }
+
+        if (currentShovelCooldownTime >= 0)
+        {
+            currentShovelCooldownTime -= Time.deltaTime;
+            canStrike = false;
+        }
+        else
+        {
+            canStrike = true;
         }
     }
 
@@ -97,11 +118,13 @@ public class Z_Movement : MonoBehaviour
     private void OnEnable()
     {
         shoot.action.performed += PerformShoot;
+        strike.action.performed += PerformStrike;
     }
 
     private void OnDisable()
     {
         shoot.action.performed -= PerformShoot;
+        strike.action.performed -= PerformStrike;
     }
 
     private void PerformShoot(InputAction.CallbackContext obj)
@@ -117,10 +140,38 @@ public class Z_Movement : MonoBehaviour
         }
     }
 
+    private void PerformStrike(InputAction.CallbackContext obj)
+    {
+        if (gameObject == null)
+        {
+            Debug.Log("Z is null");
+            return;
+        }
+        else
+        {
+            if(canStrike == true)
+            {
+                anim.SetTrigger("Strike");
+                if (pointerInput.x > 0.1f)
+                {
+                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(2, 3), 0f, zombieLayers);
+                }
+                if (pointerInput.x < 0.1f)
+                {
+                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(2, 3), 0f, zombieLayers);
+                }
+                foreach (Collider2D zombie in hitZombies)
+                {
+                    
+                }
+                currentShovelCooldownTime = shovelCooldownTime;
+            }
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -151,8 +202,10 @@ public class Z_Movement : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Health"))
         {
-            currentHealth += 33;
-            Debug.Log(currentHealth);
+            if(currentHealth <= 80)
+            {
+                currentHealth += 20;
+            }
         }
     }
 }

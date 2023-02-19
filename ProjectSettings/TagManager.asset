@@ -8,6 +8,7 @@ TagManager:
   - Grave
   - Ammo
   - Health
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - Obsticle
   - Z
-  - 
-  - 
+  - Zombies
+  - NPC
   - 
   - 
   - 
