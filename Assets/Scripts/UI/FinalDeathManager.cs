@@ -8,8 +8,9 @@ using TMPro;
 public class FinalDeathManager : MonoBehaviour
 {
     [SerializeField] private Canvas isdeadfinal;
-    private TextMeshProUGUI graveyardText;
-    private TextMeshProUGUI townText;
+    [SerializeField] private Canvas playerUi;
+    [SerializeField] private TextMeshProUGUI graveyardGrade;
+    [SerializeField] private TextMeshProUGUI townGrade;
     private void Start()
     {
         isdeadfinal.enabled = false;
@@ -19,10 +20,39 @@ public class FinalDeathManager : MonoBehaviour
     public void ChangeCanvasFinal()
     {
         isdeadfinal.enabled = true;
-        if(isdeadfinal == enabled)
+        playerUi.enabled = false;
+        if (ScoreTracker.Instance.graveGrade == 4)
         {
-            //graveyardText.text =
-            //townText.text = 
+            graveyardGrade.text = "C";
+        }
+        else if (ScoreTracker.Instance.graveGrade == 3)
+        {
+            graveyardGrade.text = "B";
+        }
+        else if (ScoreTracker.Instance.graveGrade == 2)
+        {
+            graveyardGrade.text = "A";
+        }
+        else
+        {
+            graveyardGrade.text = "Z";
+        }
+
+        if (ScoreTracker.Instance.townGrade == 4)
+        {
+            townGrade.text = "C";
+        }
+        else if (ScoreTracker.Instance.townGrade == 3)
+        {
+            townGrade.text = "B";
+        }
+        else if (ScoreTracker.Instance.townGrade == 2)
+        {
+            townGrade.text = "A";
+        }
+        else
+        {
+            townGrade.text = "Z";
         }
     }
 

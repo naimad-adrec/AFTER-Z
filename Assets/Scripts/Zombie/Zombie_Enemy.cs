@@ -72,6 +72,7 @@ public class Zombie_Enemy : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();

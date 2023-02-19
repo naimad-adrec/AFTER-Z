@@ -9558,6 +9558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isdeadfinal: {fileID: 352352578}
   playerUi: {fileID: 438443995}
+  graveyardGrade: {fileID: 1171878791}
+  townGrade: {fileID: 958051724}
 --- !u!114 &352352576
 MonoBehaviour:
   m_ObjectHideFlags: 0

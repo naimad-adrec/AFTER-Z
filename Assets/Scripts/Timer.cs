@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private float startTime;
 
-    //public Return_Menu changeCanvas;
+    [SerializeField] private FinalDeathManager changeCanvas;
 
     private float currentTime;
     private int timeState;
@@ -21,7 +21,7 @@ public class Timer : MonoBehaviour
         currentTime = startTime;
         timerText.text = currentTime.ToString();
         timerStarted = true;
-        timeState = GameObject.Find("Z").GetComponent<Z_Movement>().graveyardGrade;
+        timeState = ScoreTracker.Instance.graveGrade;
 
         if(timeState == 4)
         {
@@ -45,13 +45,18 @@ public class Timer : MonoBehaviour
     {
         if (timerStarted)
         {
-            currentTime -= Time.deltaTime;
-            if (currentTime <= 0)
+            
+            if (currentTime > 0)
+            {
+                timerText.text = "Time " + currentTime.ToString("f1");
+                currentTime -= Time.deltaTime;
+            }
+            else
             {
                 timerStarted = false;
+                changeCanvas.ChangeCanvasFinal();
                 currentTime = 0;
             }
-            timerText.text = "Time " + currentTime.ToString("f1");
         }
     }
 }
