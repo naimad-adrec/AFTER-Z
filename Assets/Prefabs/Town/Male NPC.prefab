@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1611712486927659161}
   - component: {fileID: 1611712486927659162}
+  - component: {fileID: 5435885543820743841}
+  - component: {fileID: 5508323700083993728}
   m_Layer: 0
   m_Name: Male NPC GFX
   m_TagString: NPC
@@ -84,6 +86,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5435885543820743841
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611712486927659156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5d41d96d395447da85b1d8f770cf31a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5508323700083993728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611712486927659156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168b9f4e0b5c442318eab423cd933e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiPath: {fileID: 1611712487629403414}
+  npcMove: {fileID: 1611712487629403418}
 --- !u!1 &1611712487629403408
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,4 +266,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPath: {fileID: 1611712487629403414}
   maxHealth: 100
-  zMovementZom: {fileID: 3270971273126254697, guid: a3a404394d51c494ba122519887fdfab, type: 3}
+  isScared: 0
+  zombie: {fileID: 171413518548620626, guid: 1da44901d45da4b19803c07973f82821, type: 3}

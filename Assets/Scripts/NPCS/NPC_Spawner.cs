@@ -19,13 +19,13 @@ public class NPC_Spawner : MonoBehaviour
         else
         {
             SpawnNPC();
-            currentNPCSpawnTime = Random.Range(1f, 3f);
+            currentNPCSpawnTime = Random.Range(5f, 10f);
         }
     }
 
     private void SpawnNPC()
     {
-        if (npcSpawnCount <= 10)
+        if (npcSpawnCount <= 5)
         {
             Instantiate(npc, transform.position, transform.rotation, gameObject.transform);
         }

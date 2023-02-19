@@ -17,16 +17,20 @@ public class NPC_Controller : MonoBehaviour
     private int currentHealth;
     private bool isDead = false;
 
-    private float runDistance = 7f;
+    //Ai Variables
+    private float runDistance = 10f;
     private float wanderDistanceX;
     private float wanderDistanceY;
     private Vector3 newZZomPosition;
     private Vector3 distance;
     private float idleTimer = 5f;
     private float currentIdleTimer;
+    public bool isScared;
+
+    //Zombie Variable
+    [SerializeField] private GameObject zombie;
 
     private IAstarAI ai;
-    [SerializeField] private Zombie_Z_Move zMovementZom;
 
     private void OnEnable()
     {
@@ -49,26 +53,30 @@ public class NPC_Controller : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();
         currentHealth = maxHealth;
+
+        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
     }
 
     private void Update()
     {
-        newZZomPosition = zMovementZom.zombie_Z_Position;
+        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
         distance = transform.position - newZZomPosition;
         if (distance.x < runDistance && distance.y < runDistance)
         {
-            ai.maxSpeed = 7;
+            ai.maxSpeed = 10;
             ai.destination = distance;
+            isScared = true;
         }
         else
         {
+            isScared = false;
             if (currentIdleTimer >= 0)
             {
                 currentIdleTimer -= Time.deltaTime;
             }
             else
             {
-                ai.maxSpeed = 4f;
+                ai.maxSpeed = 5f;
                 wanderDistanceX = Random.Range(-5, 5);
                 wanderDistanceY = Random.Range(-5, 5);
                 ai.destination = new Vector3((transform.position.x + wanderDistanceX), (transform.position.y + wanderDistanceY), transform.position.z);
@@ -101,5 +109,6 @@ public class NPC_Controller : MonoBehaviour
         coll.enabled = false;
         aiPath.canMove = false;
         yield return new WaitForSeconds(5);
+        Instantiate(zombie, transform.position, transform.rotation);
     }
 }
