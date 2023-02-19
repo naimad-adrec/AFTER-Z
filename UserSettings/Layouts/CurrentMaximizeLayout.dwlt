@@ -549,6 +549,7 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+
     m_Target: {x: 731.6089, y: 511.17438, z: -12.238123}
     speed: 2
     m_Value: {x: 731.6089, y: 511.17438, z: -12.238123}
