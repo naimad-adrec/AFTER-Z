@@ -31,6 +31,8 @@ public class Zombie_Z_Move : MonoBehaviour
     [SerializeField] private LayerMask npcLayers;
     private Collider2D[] hitNPC;
     private int attackDamage = 100;
+    public int totalNPCKillCount;
+    private int townGrade;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -184,15 +186,26 @@ public class Zombie_Z_Move : MonoBehaviour
         zombieZIsDead = true;
         anim.SetBool("IsDead", true);
         playerInput = new Vector2(0, 0);
+        if (totalNPCKillCount < 30)
+        {
+            townGrade = 4;
+        }
+        else if (totalNPCKillCount > 30 && totalNPCKillCount < 50)
+        {
+            townGrade = 3;
+        }
+        else if (totalNPCKillCount > 50 && totalNPCKillCount < 100)
+        {
+            townGrade = 2;
+        }
+        else
+        {
+            townGrade = 1;
+        }
     }
 
     public Vector3 GetPosition()
     {
         return transform.position;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
     }
 }
