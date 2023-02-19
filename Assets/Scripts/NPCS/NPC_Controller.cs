@@ -98,6 +98,7 @@ public class NPC_Controller : MonoBehaviour
 
     private void Die()
     {
+        Zombie_Z_Move.Instance.totalNPCKillCount += 1;
         StartCoroutine(WaitForDeathAnim());
     }
 
@@ -110,5 +111,6 @@ public class NPC_Controller : MonoBehaviour
         aiPath.canMove = false;
         yield return new WaitForSeconds(5);
         Instantiate(zombie, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

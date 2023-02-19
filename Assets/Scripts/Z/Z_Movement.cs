@@ -38,9 +38,10 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private LayerMask zombieLayers;
     private Collider2D[] hitZombies;
     private float shovelCooldownTime = 5f;
-    private float currentShovelCooldownTime;
+    public float currentShovelCooldownTime;
     private bool canStrike = true;
     public bool isCovering;
+    private Vector2 attackDirection;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -53,7 +54,7 @@ public class Z_Movement : MonoBehaviour
     private float currentDeathTimer;
     public bool deathCanvasStatus = false;
     [HideInInspector] public int currentZombieKillcount = 0;
-    private int graveyardGrade;
+    public int graveyardGrade;
 
     private void Start()
     {
@@ -68,7 +69,7 @@ public class Z_Movement : MonoBehaviour
         zPosition = transform.position;
         currentHealth = maxHealth;
 
-        currentShovelCooldownTime = 0f;
+        currentShovelCooldownTime = 5f;
         currentDeathTimer = deathTimer;
     }
 
@@ -198,15 +199,17 @@ public class Z_Movement : MonoBehaviour
                 anim.SetTrigger("Strike");
                 if (pointerInput.x > 0.1f)
                 {
-                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(2, 3), 0f, zombieLayers);
+                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
+                    attackDirection = Vector2.right;
                 }
                 if (pointerInput.x < 0.1f)
                 {
-                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(2, 3), 0f, zombieLayers);
+                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
+                    attackDirection = Vector2.left;
                 }
                 foreach (Collider2D zombie in hitZombies)
                 {
-                    
+                    zombie.GetComponent<Zombie_Enemy>().ShovelTake(attackDirection);
                 }
                 currentShovelCooldownTime = shovelCooldownTime;
             }
