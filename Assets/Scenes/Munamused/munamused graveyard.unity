@@ -1214,7 +1214,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f19f5b79707b74d8a92bdd6a23cdb1a1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.294
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -46183,6 +46183,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 231275328105730156, guid: 10bd70135a54b4bb8ba4d6419c99ab20, type: 3}
+      propertyPath: reload
+      value: 
+      objectReference: {fileID: 8300000, guid: 84e9919df804f4733ad27cba4878a49f, type: 3}
     - target: {fileID: 231275329507601754, guid: 10bd70135a54b4bb8ba4d6419c99ab20, type: 3}
       propertyPath: m_Name
       value: Z
@@ -46191,6 +46195,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 231275329507601757, guid: 10bd70135a54b4bb8ba4d6419c99ab20, type: 3}
+      propertyPath: dm
+      value: 
+      objectReference: {fileID: 1035986224}
     - target: {fileID: 231275329507601757, guid: 10bd70135a54b4bb8ba4d6419c99ab20, type: 3}
       propertyPath: gun
       value: 
@@ -46390,6 +46398,10 @@ PrefabInstance:
       propertyPath: z
       value: 
       objectReference: {fileID: 548676764}
+    - target: {fileID: 6094973249296520192, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 49bd0ad6d02004287989725f8761aa48, type: 3}
     - target: {fileID: 6094973249296520195, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -46454,6 +46466,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7076471795103066872, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7eddeff1370574a09a58b0cf043b99f4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
 --- !u!1001 &7652373380982952724
