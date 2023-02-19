@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private UnityEvent holdAction;
 
     private bool eIsPressed = false;
-    private bool spaceIsHeld;
+    public bool spaceIsHeld;
 
     private void Start()
     {
@@ -23,7 +23,6 @@ public class Interactable : MonoBehaviour
     {
         eIsPressed = zInteract.interact.action.IsPressed();
         spaceIsHeld = Z_Movement.Instance.isCovering;
-        Debug.Log(spaceIsHeld);
         if (isInRange == true)
         {
             if (eIsPressed)

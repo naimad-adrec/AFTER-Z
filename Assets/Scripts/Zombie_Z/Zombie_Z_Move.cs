@@ -54,10 +54,10 @@ public class Zombie_Z_Move : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void Update()
+    public void Update()
     {
         pointerInput = GetPointerPosition();
-        zombie_Z_Position = transform.position;
+        zombie_Z_Position = GetPosition();
         camTar.camMousePos = new Vector3(pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
 

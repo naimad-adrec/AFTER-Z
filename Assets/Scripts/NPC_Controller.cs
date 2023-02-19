@@ -17,7 +17,33 @@ public class NPC_Controller : MonoBehaviour
     private int currentHealth;
     private bool isDead = false;
 
-    void Start()
+    private float runDistance = 7f;
+    private float wanderDistanceX;
+    private float wanderDistanceY;
+    private Vector3 newZZomPosition;
+    private Vector3 distance;
+    private float idleTimer = 5f;
+    private float currentIdleTimer;
+
+    private IAstarAI ai;
+    [SerializeField] private Zombie_Z_Move zMovementZom;
+
+    private void OnEnable()
+    {
+        ai = GetComponent<IAstarAI>();
+        // Update the destination right before searching for a path as well.
+        // This is enough in theory, but this script will also update the destination every
+        // frame as the destination is used for debugging and may be used for other things by other
+        // scripts as well. So it makes sense that it is up to date every frame.
+        if (ai != null) ai.onSearchPath += Update;
+    }
+
+    private void OnDisable()
+    {
+        if (ai != null) ai.onSearchPath -= Update;
+    }
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
@@ -25,9 +51,30 @@ public class NPC_Controller : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update()
+    private void Update()
     {
-        
+        newZZomPosition = zMovementZom.zombie_Z_Position;
+        distance = transform.position - newZZomPosition;
+        if (distance.x < runDistance && distance.y < runDistance)
+        {
+            ai.maxSpeed = 7;
+            ai.destination = distance;
+        }
+        else
+        {
+            if (currentIdleTimer >= 0)
+            {
+                currentIdleTimer -= Time.deltaTime;
+            }
+            else
+            {
+                ai.maxSpeed = 4f;
+                wanderDistanceX = Random.Range(-5, 5);
+                wanderDistanceY = Random.Range(-5, 5);
+                ai.destination = new Vector3((transform.position.x + wanderDistanceX), (transform.position.y + wanderDistanceY), transform.position.z);
+                currentIdleTimer = idleTimer;
+            }
+        }
     }
 
     public void NPCTakeDamage(int damage)
@@ -55,5 +102,4 @@ public class NPC_Controller : MonoBehaviour
         aiPath.canMove = false;
         yield return new WaitForSeconds(5);
     }
-
 }
