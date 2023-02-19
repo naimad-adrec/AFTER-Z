@@ -51,9 +51,9 @@ public class Zombie_Enemy : MonoBehaviour
     private bool zIsDead;
     private Vector3 zNewPosition;
 
-    IAstarAI ai;
+    private IAstarAI ai;
 
-    void OnEnable()
+    private void OnEnable()
     {
         ai = GetComponent<IAstarAI>();
         // Update the destination right before searching for a path as well.
@@ -63,7 +63,7 @@ public class Zombie_Enemy : MonoBehaviour
         if (ai != null) ai.onSearchPath += Update;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         if (ai != null) ai.onSearchPath -= Update;
     }
@@ -153,16 +153,15 @@ public class Zombie_Enemy : MonoBehaviour
         }
     }
 
-
     private void Die()
     {
+        Z_Movement.Instance.currentZombieKillcount += 1;
         StartCoroutine(WaitForDeathAnim());
         if (chance == 1)
         {
             Instantiate(ammo, transform.position, transform.rotation);
         }
     }
-
 
     //Timed functions
     private IEnumerator AttackCooldown()

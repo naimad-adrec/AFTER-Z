@@ -30,8 +30,9 @@ public class Z_Movement : MonoBehaviour
 
     //Gun Variables
     private Gun_Parent gunParent;
+    [SerializeField] private GameObject gun;
     [SerializeField] private Camera_Target camTar;
-    [SerializeField] private InputActionReference movement, shoot, pointerPos, strike;
+    [SerializeField] public InputActionReference movement, shoot, pointerPos, strike, interact, cover;
 
     //Shovel Variables
     [SerializeField] private LayerMask zombieLayers;
@@ -39,11 +40,20 @@ public class Z_Movement : MonoBehaviour
     private float shovelCooldownTime = 5f;
     private float currentShovelCooldownTime;
     private bool canStrike = true;
+    public bool isCovering;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool isDead = false;
+    [SerializeField] private DeathManager dm;
+
+    //Scene Variables
+    private float deathTimer = 4f;
+    private float currentDeathTimer;
+    public bool deathCanvasStatus = false;
+    [HideInInspector] public int currentZombieKillcount = 0;
+    private int graveyardGrade;
 
     private void Start()
     {
@@ -59,6 +69,7 @@ public class Z_Movement : MonoBehaviour
         currentHealth = maxHealth;
 
         currentShovelCooldownTime = 0f;
+        currentDeathTimer = deathTimer;
     }
 
     private void Update()
@@ -68,6 +79,15 @@ public class Z_Movement : MonoBehaviour
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
+        Debug.Log(isCovering);
+        if (cover.action.IsInProgress())
+        {
+            isCovering = true;
+        }
+        else if(!cover.action.IsInProgress())
+        {
+            isCovering = false;
+        }
 
         if (isDead == false)
         {
@@ -80,6 +100,30 @@ public class Z_Movement : MonoBehaviour
             else if (zDirection.x > 0f)
             {
                 sp.flipX = false;
+            }
+            if(isCovering == true)
+            {
+                anim.SetBool("IsShoveling", true);
+                SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
+                gunEnabled.enabled = false;
+                playerInput = Vector2.zero;
+            }
+            else
+            {
+                anim.SetBool("IsShoveling", false);
+                SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
+                gunEnabled.enabled = true;
+            }
+        }
+        else
+        {
+            if (currentDeathTimer >= 0)
+            {
+                currentDeathTimer -= Time.deltaTime;
+            }
+            else
+            {
+                deathCanvasStatus = true;
             }
         }
 
@@ -187,6 +231,23 @@ public class Z_Movement : MonoBehaviour
         gunParent.gameObject.SetActive(false);
         gunParent.ammoCount = 0;
         playerInput = new Vector2(0, 0);
+
+        if(currentZombieKillcount < 30)
+        {
+            graveyardGrade = 4;
+        }
+        else if (currentZombieKillcount > 30 && currentZombieKillcount < 50)
+        {
+            graveyardGrade = 3;
+        }
+        else if (currentZombieKillcount > 50 && currentZombieKillcount < 100)
+        {
+            graveyardGrade = 2;
+        }
+        else
+        {
+            graveyardGrade = 1;
+        }
     }
 
     public Vector3 GetPosition()

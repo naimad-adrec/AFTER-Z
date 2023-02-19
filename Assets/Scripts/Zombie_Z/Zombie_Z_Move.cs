@@ -30,7 +30,7 @@ public class Zombie_Z_Move : MonoBehaviour
     [SerializeField] private InputActionReference movement, attack, pointerPos;
     [SerializeField] private LayerMask npcLayers;
     private Collider2D[] hitNPC;
-    private int attackDamage = 50;
+    private int attackDamage = 100;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -54,10 +54,10 @@ public class Zombie_Z_Move : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void Update()
+    public void Update()
     {
         pointerInput = GetPointerPosition();
-        zombie_Z_Position = transform.position;
+        zombie_Z_Position = GetPosition();
         camTar.camMousePos = new Vector3(pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
 
@@ -161,7 +161,10 @@ public class Zombie_Z_Move : MonoBehaviour
         }
         foreach (Collider2D npc in hitNPC)
         {
-            npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+            if (npc.gameObject.CompareTag("NPC"))
+            {
+                npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+            }
         }
     }
 
