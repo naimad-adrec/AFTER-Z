@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class DeathManager : MonoBehaviour
 {
     [SerializeField] private Canvas deathCanvas;
+    [SerializeField] private Canvas playerCanvas;
     [SerializeField] private Image Qmark;
     private bool currentStatus;
 
@@ -23,13 +24,14 @@ public class DeathManager : MonoBehaviour
         if(currentStatus == true)
         {
             ChangeCanvas();
-            Invoke("QMarkEnable", 3);
+            Invoke("QMarkEnable", 5);
         }
     }
 
     public void ChangeCanvas()
     {   
         deathCanvas.enabled = true;
+        playerCanvas.enabled = false;
     }
 
     private void QMarkEnable()

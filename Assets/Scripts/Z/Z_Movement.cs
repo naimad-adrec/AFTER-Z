@@ -30,6 +30,7 @@ public class Z_Movement : MonoBehaviour
 
     //Gun Variables
     private Gun_Parent gunParent;
+    [SerializeField] private GameObject gun;
     [SerializeField] private Camera_Target camTar;
     [SerializeField] public InputActionReference movement, shoot, pointerPos, strike, interact, cover;
 
@@ -52,6 +53,7 @@ public class Z_Movement : MonoBehaviour
     private float currentDeathTimer;
     public bool deathCanvasStatus = false;
     [HideInInspector] public int currentZombieKillcount = 0;
+    private int graveyardGrade;
 
     private void Start()
     {
@@ -72,13 +74,20 @@ public class Z_Movement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentDeathTimer);
         pointerInput = GetPointerPosition();
         zPosition = transform.position;
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
-        isCovering = cover.action.IsInProgress();
+        Debug.Log(isCovering);
+        if (cover.action.IsInProgress())
+        {
+            isCovering = true;
+        }
+        else if(!cover.action.IsInProgress())
+        {
+            isCovering = false;
+        }
 
         if (isDead == false)
         {
@@ -91,6 +100,19 @@ public class Z_Movement : MonoBehaviour
             else if (zDirection.x > 0f)
             {
                 sp.flipX = false;
+            }
+            if(isCovering == true)
+            {
+                anim.SetBool("IsShoveling", true);
+                SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
+                gunEnabled.enabled = false;
+                playerInput = Vector2.zero;
+            }
+            else
+            {
+                anim.SetBool("IsShoveling", false);
+                SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
+                gunEnabled.enabled = true;
             }
         }
         else
@@ -209,6 +231,23 @@ public class Z_Movement : MonoBehaviour
         gunParent.gameObject.SetActive(false);
         gunParent.ammoCount = 0;
         playerInput = new Vector2(0, 0);
+
+        if(currentZombieKillcount < 30)
+        {
+            graveyardGrade = 4;
+        }
+        else if (currentZombieKillcount > 30 && currentZombieKillcount < 50)
+        {
+            graveyardGrade = 3;
+        }
+        else if (currentZombieKillcount > 50 && currentZombieKillcount < 100)
+        {
+            graveyardGrade = 2;
+        }
+        else
+        {
+            graveyardGrade = 1;
+        }
     }
 
     public Vector3 GetPosition()
