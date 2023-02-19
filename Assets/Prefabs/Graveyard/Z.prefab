@@ -363,11 +363,14 @@ MonoBehaviour:
   shoot: {fileID: -2717748869268994693, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   pointerPos: {fileID: -98186982936080166, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   strike: {fileID: 2085565374834856575, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
+  interact: {fileID: -1502282180637675306, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   zombieLayers:
     serializedVersion: 2
     m_Bits: 256
   maxHealth: 100
+  currentHealth: 0
   isDead: 0
+  currentZombieKillcount: 0
 --- !u!95 &231275329507601760
 Animator:
   serializedVersion: 4

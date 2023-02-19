@@ -31,7 +31,7 @@ public class Z_Movement : MonoBehaviour
     //Gun Variables
     private Gun_Parent gunParent;
     [SerializeField] private Camera_Target camTar;
-    [SerializeField] private InputActionReference movement, shoot, pointerPos, strike;
+    [SerializeField] public InputActionReference movement, shoot, pointerPos, strike, interact, cover;
 
     //Shovel Variables
     [SerializeField] private LayerMask zombieLayers;
@@ -39,6 +39,7 @@ public class Z_Movement : MonoBehaviour
     private float shovelCooldownTime = 5f;
     private float currentShovelCooldownTime;
     private bool canStrike = true;
+    public bool isCovering;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -50,6 +51,7 @@ public class Z_Movement : MonoBehaviour
     private float deathTimer = 4f;
     private float currentDeathTimer;
     public bool deathCanvasStatus = false;
+    [HideInInspector] public int currentZombieKillcount = 0;
 
     private void Start()
     {
@@ -76,6 +78,7 @@ public class Z_Movement : MonoBehaviour
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
+        isCovering = cover.action.IsInProgress();
 
         if (isDead == false)
         {

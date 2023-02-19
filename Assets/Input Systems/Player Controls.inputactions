@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "397877d1-ffe5-455f-9e55-81d9e3305efc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cover",
+                    "type": "Button",
+                    "id": "b0672d8a-4d45-4bb7-838d-c6406dac0be7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -123,11 +141,33 @@
                 {
                     "name": "",
                     "id": "a14024ba-453a-4040-9f28-cacc79e06d64",
-                    "path": "<Keyboard>/space",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Shovel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22255bc2-b58e-4443-a5a9-ab1f1533c203",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "695aef46-681f-4b30-a3f4-e5442ad7847a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cover",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
