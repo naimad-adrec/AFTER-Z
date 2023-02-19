@@ -40,7 +40,7 @@ public class Z_Movement : MonoBehaviour
     private float shovelCooldownTime = 5f;
     public float currentShovelCooldownTime;
     private bool canStrike = true;
-    public bool isCovering;
+    [HideInInspector] public bool isCovering;
     private Vector2 attackDirection;
 
     //Health Variables
@@ -52,9 +52,10 @@ public class Z_Movement : MonoBehaviour
     //Scene Variables
     private float deathTimer = 4f;
     private float currentDeathTimer;
-    public bool deathCanvasStatus = false;
+    [HideInInspector] public bool deathCanvasStatus = false;
     [HideInInspector] public int currentZombieKillcount = 0;
     public int graveyardGrade;
+    [SerializeField] private ScoreTracker scoretracker;
 
     private void Start()
     {
@@ -226,7 +227,7 @@ public class Z_Movement : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         coll.enabled = false;
         isDead = true;
@@ -251,6 +252,9 @@ public class Z_Movement : MonoBehaviour
         {
             graveyardGrade = 1;
         }
+
+        scoretracker.graveGrade = graveyardGrade;
+        Debug.Log(graveyardGrade);
     }
 
     public Vector3 GetPosition()
