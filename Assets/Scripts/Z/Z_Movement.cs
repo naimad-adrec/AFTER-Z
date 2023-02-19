@@ -15,6 +15,7 @@ public class Z_Movement : MonoBehaviour
     private Transform trans;
     private SpriteRenderer sp;
     private Animator anim;
+    private AudioSource sound;
 
     //Instance
     public static Z_Movement Instance { get; private set; }
@@ -57,6 +58,11 @@ public class Z_Movement : MonoBehaviour
     public int graveyardGrade;
     [SerializeField] private ScoreTracker scoretracker;
 
+    //Sound Variables
+    [SerializeField] private AudioClip run;
+    [SerializeField] private AudioClip hurt;
+    [SerializeField] private AudioClip death;
+
     private void Start()
     {
         Instance = this;
@@ -66,6 +72,7 @@ public class Z_Movement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         gunParent = GetComponentInChildren<Gun_Parent>();
+        sound = gameObject.GetComponent<AudioSource>();
 
         zPosition = transform.position;
         currentHealth = maxHealth;
@@ -150,6 +157,8 @@ public class Z_Movement : MonoBehaviour
         else
         {
             anim.SetBool("IsWalking", true);
+            sound.clip = run;
+            sound.Play();
         }
     }
 
@@ -220,10 +229,14 @@ public class Z_Movement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        sound.clip = hurt;
+        sound.Play();
 
         if (currentHealth <= 0)
         {
             Die();
+            sound.clip = death;
+            sound.Play();
         }
     }
 
