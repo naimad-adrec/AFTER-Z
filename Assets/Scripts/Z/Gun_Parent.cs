@@ -42,7 +42,7 @@ public class Gun_Parent : MonoBehaviour
 
     public void Shoot()
     {
-        if(ammoCount > 0)
+        if(ammoCount > 0 && Z_Movement.Instance.isDead == false)
         {
             aud.clip = shoot;
             aud.Play();
@@ -51,7 +51,7 @@ public class Gun_Parent : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);
         }
-        else
+        else if (Z_Movement.Instance.isDead == false)
         {
             aud.clip = empty;
             aud.Play();
