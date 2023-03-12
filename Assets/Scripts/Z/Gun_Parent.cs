@@ -8,7 +8,20 @@ public class Gun_Parent : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
 
+    //Sound Variables
+    private AudioSource aud;
+    [SerializeField] private AudioClip reload;
+    [SerializeField] private AudioClip shoot;
+    [SerializeField] private AudioClip empty;
+
     [SerializeField] private float bulletForce = 20f;
+
+    public int ammoCount = 8;
+
+    private void Start()
+    {
+        aud = gameObject.GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -29,8 +42,19 @@ public class Gun_Parent : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);
+        if(ammoCount > 0)
+        {
+            aud.clip = shoot;
+            aud.Play();
+            ammoCount -= 1;
+            GameObject bullet = Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(firingPoint.right * bulletForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            aud.clip = empty;
+            aud.Play();
+        }
     }
 }
