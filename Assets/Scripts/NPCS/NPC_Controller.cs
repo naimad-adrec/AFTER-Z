@@ -18,11 +18,12 @@ public class NPC_Controller : MonoBehaviour
     private bool isDead = false;
 
     //Ai Variables
-    private float runDistance = 10f;
+    private float runDistance = 5f;
     private float wanderDistanceX;
     private float wanderDistanceY;
     private Vector3 newZZomPosition;
     private Vector3 distance;
+    private Vector3 overallDistance;
     private float idleTimer = 5f;
     private float currentIdleTimer;
     public bool isScared;
@@ -61,13 +62,14 @@ public class NPC_Controller : MonoBehaviour
     {
         newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
         distance = transform.position - newZZomPosition;
-        if (distance.x < runDistance && distance.y < runDistance)
+        overallDistance = distance;
+        if (overallDistance.x < runDistance && overallDistance.y < runDistance)
         {
             ai.maxSpeed = 10;
             ai.destination = distance;
             isScared = true;
         }
-        else
+        else if (overallDistance.x > runDistance || overallDistance.y > runDistance)
         {
             isScared = false;
             if (currentIdleTimer >= 0)
@@ -98,6 +100,7 @@ public class NPC_Controller : MonoBehaviour
 
     private void Die()
     {
+        //Zombie_Z_Move.Instance.totalNPCKillCount += 1;
         StartCoroutine(WaitForDeathAnim());
     }
 
@@ -110,5 +113,6 @@ public class NPC_Controller : MonoBehaviour
         aiPath.canMove = false;
         yield return new WaitForSeconds(5);
         Instantiate(zombie, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

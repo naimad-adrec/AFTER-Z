@@ -15,6 +15,7 @@ public class Z_Movement : MonoBehaviour
     private Transform trans;
     private SpriteRenderer sp;
     private Animator anim;
+    private AudioSource sound;
 
     //Instance
     public static Z_Movement Instance { get; private set; }
@@ -38,9 +39,10 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private LayerMask zombieLayers;
     private Collider2D[] hitZombies;
     private float shovelCooldownTime = 5f;
-    private float currentShovelCooldownTime;
+    public float currentShovelCooldownTime;
     private bool canStrike = true;
-    public bool isCovering;
+    [HideInInspector] public bool isCovering;
+    private Vector2 attackDirection;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -51,9 +53,15 @@ public class Z_Movement : MonoBehaviour
     //Scene Variables
     private float deathTimer = 4f;
     private float currentDeathTimer;
-    public bool deathCanvasStatus = false;
+    [HideInInspector] public bool deathCanvasStatus = false;
     [HideInInspector] public int currentZombieKillcount = 0;
-    private int graveyardGrade;
+    public int graveyardGrade;
+    [SerializeField] private ScoreTracker scoretracker;
+
+    //Sound Variables
+    [SerializeField] private AudioClip run;
+    [SerializeField] private AudioClip hurt;
+    [SerializeField] private AudioClip death;
 
     private void Start()
     {
@@ -64,11 +72,12 @@ public class Z_Movement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         gunParent = GetComponentInChildren<Gun_Parent>();
+        sound = gameObject.GetComponent<AudioSource>();
 
         zPosition = transform.position;
         currentHealth = maxHealth;
 
-        currentShovelCooldownTime = 0f;
+        currentShovelCooldownTime = 5f;
         currentDeathTimer = deathTimer;
     }
 
@@ -148,6 +157,8 @@ public class Z_Movement : MonoBehaviour
         else
         {
             anim.SetBool("IsWalking", true);
+            sound.clip = run;
+            sound.Play();
         }
     }
 
@@ -198,15 +209,17 @@ public class Z_Movement : MonoBehaviour
                 anim.SetTrigger("Strike");
                 if (pointerInput.x > 0.1f)
                 {
-                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(2, 3), 0f, zombieLayers);
+                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
+                    attackDirection = Vector2.right;
                 }
                 if (pointerInput.x < 0.1f)
                 {
-                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(2, 3), 0f, zombieLayers);
+                    hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
+                    attackDirection = Vector2.left;
                 }
                 foreach (Collider2D zombie in hitZombies)
                 {
-                    
+                    zombie.GetComponent<Zombie_Enemy>().ShovelTake(attackDirection);
                 }
                 currentShovelCooldownTime = shovelCooldownTime;
             }
@@ -216,14 +229,18 @@ public class Z_Movement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        sound.clip = hurt;
+        sound.Play();
 
         if (currentHealth <= 0)
         {
             Die();
+            sound.clip = death;
+            sound.Play();
         }
     }
 
-    private void Die()
+    public void Die()
     {
         coll.enabled = false;
         isDead = true;
@@ -248,6 +265,9 @@ public class Z_Movement : MonoBehaviour
         {
             graveyardGrade = 1;
         }
+
+        scoretracker.graveGrade = graveyardGrade;
+        Debug.Log(graveyardGrade);
     }
 
     public Vector3 GetPosition()
