@@ -74,7 +74,7 @@ public class Grave_Controller : MonoBehaviour
     public void CoverGrave()
     {
         currentCoverTime += Time.deltaTime;
-        if(currentCoverTime >= 3f)
+        if(currentCoverTime >= 2.5f)
         {
             currentGraveUnearthTime = graveUnearthTime;
             currentZombieSpawnTime = zombieSpawnTime;

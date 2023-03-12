@@ -46,6 +46,8 @@ public class Zombie_Enemy : MonoBehaviour
     //Bullet Variables
     [SerializeField] private Bullet_Controller bullet;
 
+    private float strength = 10f;
+
     //Z Variables
     private GameObject z;
     private bool zIsDead;
@@ -70,6 +72,7 @@ public class Zombie_Enemy : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();
@@ -137,6 +140,12 @@ public class Zombie_Enemy : MonoBehaviour
         {
             StartCoroutine(KnockBackWait());
         }
+
+    }
+
+    public void ShovelTake(Vector2 direction)
+    {
+        StartCoroutine(ShovelKnockBackWait(direction));
     }
 
     //Take damage and die functions
@@ -145,7 +154,6 @@ public class Zombie_Enemy : MonoBehaviour
         currentHealth -= damage;
         anim.SetTrigger("ZombieHurt");
         chance = Random.Range(0, 7);
-        Debug.Log(chance);
 
         if (currentHealth <= 0)
         {
@@ -189,6 +197,14 @@ public class Zombie_Enemy : MonoBehaviour
     {
         ZombieTakeDamage(bullet.bulletDamage);
         yield return new WaitForSeconds(0.1f);
+        rb.velocity = new Vector2(0f, 0f);
+    }
+
+    public IEnumerator ShovelKnockBackWait(Vector2 givenDirection)
+    {
+        ZombieTakeDamage(50);
+        rb.AddForce(givenDirection * strength, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
         rb.velocity = new Vector2(0f, 0f);
     }
 }

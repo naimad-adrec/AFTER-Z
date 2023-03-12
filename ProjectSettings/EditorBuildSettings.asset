@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Title Scene.unity
+    guid: 69f0d133d83b9410ab62fec8e05af575
+  - enabled: 1
+    path: Assets/Scenes/Main/Graveyard Main.unity
+    guid: 845625f4719ed4ff498c6d10d2d8650a
+  - enabled: 1
+    path: Assets/Scenes/Main/Town Main.unity
+    guid: 9999699b885394309a3811f09c15c97e
   m_configObjects: {}
