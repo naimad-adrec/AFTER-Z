@@ -8,7 +8,7 @@ public class Bullet_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("Grave") || !collision.gameObject.CompareTag("Interactible"))
+        if (!collision.gameObject.CompareTag("Grave") && !collision.gameObject.CompareTag("Interactible"))
         {
             Destroy(gameObject);
         }

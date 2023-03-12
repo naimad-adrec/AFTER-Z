@@ -35,7 +35,6 @@ public class Zombie_Enemy : MonoBehaviour
     //Attack Variables
     private int attackRange = 1;
     private int attackDamage = 20;
-    private float nextAttackTime;
     [SerializeField] private float attackCooldown = 2;
     private bool canAttack;
 
@@ -49,7 +48,6 @@ public class Zombie_Enemy : MonoBehaviour
     private float strength = 10f;
 
     //Z Variables
-    private GameObject z;
     private bool zIsDead;
     private Vector3 zNewPosition;
 
@@ -58,10 +56,6 @@ public class Zombie_Enemy : MonoBehaviour
     private void OnEnable()
     {
         ai = GetComponent<IAstarAI>();
-        // Update the destination right before searching for a path as well.
-        // This is enough in theory, but this script will also update the destination every
-        // frame as the destination is used for debugging and may be used for other things by other
-        // scripts as well. So it makes sense that it is up to date every frame.
         if (ai != null) ai.onSearchPath += Update;
     }
 
@@ -82,12 +76,13 @@ public class Zombie_Enemy : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(canAttack);
         zNewPosition = Z_Movement.Instance.zPosition;
         zIsDead = Z_Movement.Instance.isDead;
 
         if (rb != null && ai != null) ai.destination = zNewPosition;
 
-        if (Vector3.Distance(gameObject.transform.position, zNewPosition) < attackRange)
+        if ((Vector3.Distance(gameObject.transform.position, zNewPosition) < attackRange) && isDead == false)
         {
             if(canAttack == true && zIsDead == false)
             {
@@ -121,6 +116,7 @@ public class Zombie_Enemy : MonoBehaviour
             if(isDead == true)
             {
                 aiPath.canMove = false;
+                canAttack = false;
             }
             else
             {
@@ -140,7 +136,6 @@ public class Zombie_Enemy : MonoBehaviour
         {
             StartCoroutine(KnockBackWait());
         }
-
     }
 
     public void ShovelTake(Vector2 direction)
@@ -202,7 +197,7 @@ public class Zombie_Enemy : MonoBehaviour
 
     public IEnumerator ShovelKnockBackWait(Vector2 givenDirection)
     {
-        ZombieTakeDamage(50);
+        ZombieTakeDamage(25);
         rb.AddForce(givenDirection * strength, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.3f);
         rb.velocity = new Vector2(0f, 0f);

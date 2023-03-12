@@ -7,7 +7,10 @@ public class Grave_Controller : MonoBehaviour
 {
     //Game Components
     private BoxCollider2D coll;
-    private Animator anim;
+    [HideInInspector] public Animator anim;
+
+    //Instance
+    public static Grave_Controller Instance { get; private set; }
 
     //Zombie Variable
     [SerializeField] private GameObject zombie;
@@ -19,13 +22,15 @@ public class Grave_Controller : MonoBehaviour
     private float currentZombieSpawnTime;
 
     //Unearthed Timers
-    [SerializeField] private GameObject ammo;
+    [SerializeField] private GameObject health;
     private float graveUnearthTime;
     private float currentGraveUnearthTime;
     private float currentCoverTime = 0;
     private Vector3 graveAmmoSpawnPoint;
+
     private void Start()
     {
+        Instance = this;
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         coll.enabled = false;
@@ -79,7 +84,7 @@ public class Grave_Controller : MonoBehaviour
             currentGraveUnearthTime = graveUnearthTime;
             currentZombieSpawnTime = zombieSpawnTime;
             anim.SetBool("IsUnearthed", false);
-            Instantiate(ammo, graveAmmoSpawnPoint, transform.rotation);
+            Instantiate(health, graveAmmoSpawnPoint, transform.rotation);
             currentCoverTime = 0;
         }
     }
