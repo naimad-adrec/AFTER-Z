@@ -70,7 +70,7 @@ public class Grave_Controller : MonoBehaviour
 
     private void SpawnZombie()
     {
-        if (zombieSpawnCount <= 2)
+        if (zombieSpawnCount <= 1)
         {
             Instantiate(zombie, zombieSpawnPoint, transform.rotation, gameObject.transform);
         }
