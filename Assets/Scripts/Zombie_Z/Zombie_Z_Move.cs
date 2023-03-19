@@ -47,7 +47,6 @@ public class Zombie_Z_Move : MonoBehaviour
     private float timeAlive = 0f;
     [SerializeField] private FinalDeathManager deathMan;
 
-
     private void Start()
     {
         Instance = this;

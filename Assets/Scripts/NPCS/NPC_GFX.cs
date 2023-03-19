@@ -13,7 +13,6 @@ public class NPC_GFX : MonoBehaviour
 
     private Vector3 zZomLayerPos;
 
-
     private void Start()
     {
         anim = GetComponent<Animator>();
