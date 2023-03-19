@@ -68,7 +68,7 @@ public class NPC_Controller : MonoBehaviour
         distance = Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
         if (distance < 7)
         {
-            ai.maxSpeed = 10;
+            ai.maxSpeed = 8;
             if (newZZomPosition.x > transform.position.x)
             {
                 ai.destination = new Vector3((transform.position.x - distance), (transform.position.y - distance), transform.position.z);

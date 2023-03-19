@@ -179,17 +179,7 @@ public class Zombie_Z_Move : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
+    public void Die()
     {
         aud.clip = die;
         aud.Play();
@@ -213,6 +203,8 @@ public class Zombie_Z_Move : MonoBehaviour
         {
             townGrade = 1;
         }
+        ScoreTracker.Instance.townGrade = townGrade;
+        Debug.Log(ScoreTracker.Instance.townGrade);
     }
 
     public Vector3 GetPosition()

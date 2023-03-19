@@ -32172,8 +32172,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adaa470f42a304f68a58accfe6860f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 5
+  timeUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 983392686}
+        m_TargetAssemblyTypeName: Zombie_Z_Move, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   changeCanvas: {fileID: 352352575}
+  startTime: 5
   currentTime: 0
   timerText: {fileID: 2036826520}
 --- !u!4 &604901131
@@ -111511,6 +111526,7 @@ MonoBehaviour:
   zombieZIsDead: 0
   attackSound: {fileID: 8300000, guid: 49bd0ad6d02004287989725f8761aa48, type: 3}
   die: {fileID: 8300000, guid: b580498ed3e8b4b04ade16021c6dca88, type: 3}
+  scoretracker: {fileID: 5985122729041144191, guid: a48b396f71aa84250a21a2d8809460b3, type: 3}
 --- !u!50 &983392687
 Rigidbody2D:
   serializedVersion: 4

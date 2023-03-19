@@ -37,7 +37,7 @@ public class FinalDeathManager : MonoBehaviour
         {
             graveyardGrade.text = "Z";
         }
-
+        Debug.Log(ScoreTracker.Instance.townGrade);
         if (ScoreTracker.Instance.townGrade == 4)
         {
             townGrade.text = "C";

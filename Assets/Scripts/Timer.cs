@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
     public static Timer Instance { get; private set; }
 
-    [SerializeField] private float startTime;
+    [SerializeField] private UnityEvent timeUp;
 
     [SerializeField] private FinalDeathManager changeCanvas;
 
+    [SerializeField] private float startTime;
     [HideInInspector] public float currentTime;
     private int timeState;
     private bool timerStarted = false;
@@ -28,15 +30,15 @@ public class Timer : MonoBehaviour
 
         if(timeState == 4)
         {
-            currentTime = 10;
+            currentTime = 15;
         }
         else if (timeState == 3)
         {
-            currentTime = 15;
+            currentTime = 20;
         }
         else if (timeState == 2)
         {
-            currentTime = 20;
+            currentTime = 25;
         }
         else
         {
@@ -48,7 +50,6 @@ public class Timer : MonoBehaviour
     {
         if (timerStarted)
         {
-            
             if (currentTime > 0)
             {
                 timerText.text = "Time " + currentTime.ToString("f1");
@@ -59,6 +60,7 @@ public class Timer : MonoBehaviour
                 timerStarted = false;
                 changeCanvas.ChangeCanvasFinal();
                 currentTime = 0;
+                timeUp.Invoke();
             }
         }
     }
