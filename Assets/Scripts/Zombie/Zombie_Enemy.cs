@@ -81,7 +81,16 @@ public class Zombie_Enemy : MonoBehaviour
 
         if (rb != null && ai != null) ai.destination = zNewPosition;
 
-        if ((Vector3.Distance(gameObject.transform.position, zNewPosition) < attackRange) && isDead == false)
+        if(Z_Movement.Instance.zTimeAlive > 45)
+        {
+            ai.maxSpeed = 4;
+        }
+        else if (Z_Movement.Instance.zTimeAlive > 70)
+        {
+            ai.maxSpeed = 5;
+        }
+
+            if ((Vector3.Distance(gameObject.transform.position, zNewPosition) < attackRange) && isDead == false)
         {
             if(canAttack == true && zIsDead == false)
             {
@@ -147,7 +156,7 @@ public class Zombie_Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         anim.SetTrigger("ZombieHurt");
-        chance = Random.Range(0, 7);
+        chance = Random.Range(0, 6);
 
         if (currentHealth <= 0)
         {

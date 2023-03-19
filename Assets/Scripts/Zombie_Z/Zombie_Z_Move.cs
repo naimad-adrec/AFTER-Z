@@ -32,7 +32,7 @@ public class Zombie_Z_Move : MonoBehaviour
     private Collider2D[] hitNPC;
     private int attackDamage = 100;
     public int totalNPCKillCount;
-    private int townGrade;
+    private int currentTownGrade;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -40,8 +40,12 @@ public class Zombie_Z_Move : MonoBehaviour
     [HideInInspector] public bool zombieZIsDead = false;
 
     //Audio Variables
-    
-    //[SerializeField] private AudioClip ;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip die;
+
+    //Timer Variable
+    private float timeAlive = 0f;
+    [SerializeField] private FinalDeathManager deathMan;
 
 
     private void Start()
@@ -52,6 +56,7 @@ public class Zombie_Z_Move : MonoBehaviour
         trans = GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
 
         zombie_Z_Position = transform.position;
         currentHealth = maxHealth;
@@ -67,6 +72,8 @@ public class Zombie_Z_Move : MonoBehaviour
         if (zombieZIsDead == false)
         {
             playerInput = movement.action.ReadValue<Vector2>();
+
+            timeAlive += Time.deltaTime;
 
             if (playerInput.x < 0f)
             {
@@ -129,7 +136,8 @@ public class Zombie_Z_Move : MonoBehaviour
     private void PerformAttack(InputAction.CallbackContext obj)
     {
         //Perform Attack
-       
+        aud.clip = attackSound;
+        aud.Play();
         if (playerInput.x < 0f)
         {
             anim.SetFloat("Horizontal", -1f);
@@ -167,42 +175,37 @@ public class Zombie_Z_Move : MonoBehaviour
             if (npc.gameObject.CompareTag("NPC"))
             {
                 npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+                Timer.Instance.currentTime += 1;
             }
         }
     }
 
-    public void TakeDamage(int damage)
+    public void Die()
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
+        moveSpeed = 0;
+        aud.clip = die;
+        aud.Play();
         coll.enabled = false;
         zombieZIsDead = true;
         anim.SetBool("IsDead", true);
         playerInput = new Vector2(0, 0);
-        if (totalNPCKillCount < 30)
+        if (timeAlive < 16)
         {
-            townGrade = 4;
+            currentTownGrade = 4;
         }
-        else if (totalNPCKillCount > 30 && totalNPCKillCount < 50)
+        else if (timeAlive >= 16 && timeAlive < 40)
         {
-            townGrade = 3;
+            currentTownGrade = 3;
         }
-        else if (totalNPCKillCount > 50 && totalNPCKillCount < 100)
+        else if (timeAlive >= 40 && timeAlive < 70)
         {
-            townGrade = 2;
+            currentTownGrade = 2;
         }
         else
         {
-            townGrade = 1;
+            currentTownGrade = 1;
         }
+        deathMan.finalTownGrade = currentTownGrade;
     }
 
     public Vector3 GetPosition()

@@ -11,7 +11,6 @@ public class Camera_Target : MonoBehaviour
 
     void Update()
     {
-        
         Vector3 targetPos = (zTrans.position + camMousePos) / 2f;
         targetPos.x = Mathf.Clamp(targetPos.x, -threshold + zTrans.position.x, threshold + zTrans.position.x);
         targetPos.y = Mathf.Clamp(targetPos.y, -threshold + zTrans.position.y, threshold + zTrans.position.y);

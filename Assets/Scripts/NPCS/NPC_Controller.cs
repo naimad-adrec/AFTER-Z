@@ -18,8 +18,10 @@ public class NPC_Controller : MonoBehaviour
     private int currentHealth;
     private bool isDead = false;
 
+    //Audio Variables
+    [SerializeField] private AudioClip die;
+
     //Ai Variables
-    private float runDistance = 5f;
     private float wanderDistanceX;
     private float wanderDistanceY;
     private Vector3 newZZomPosition;
@@ -64,9 +66,9 @@ public class NPC_Controller : MonoBehaviour
 
 
         distance = Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
-        if (distance < 5)
+        if (distance < 7)
         {
-            ai.maxSpeed = 10;
+            ai.maxSpeed = 8;
             if (newZZomPosition.x > transform.position.x)
             {
                 ai.destination = new Vector3((transform.position.x - distance), (transform.position.y - distance), transform.position.z);
@@ -77,7 +79,7 @@ public class NPC_Controller : MonoBehaviour
             }
             isScared = true;
         }
-        else if (distance > 5)
+        else
         {
             isScared = false;
             if (currentIdleTimer >= 0)
@@ -114,7 +116,8 @@ public class NPC_Controller : MonoBehaviour
 
     private IEnumerator WaitForDeathAnim()
     {
-        Debug.Log("I died");
+        aud.clip = die;
+        aud.Play();
         //anim.SetBool("IsDead", true);
         isDead = true;
         coll.enabled = false;
