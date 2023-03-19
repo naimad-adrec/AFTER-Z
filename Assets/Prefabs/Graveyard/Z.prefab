@@ -65,7 +65,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 637a85b22fdf44d2baafd167d9ec4ad1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.627
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 583834141
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 84111cf7099f949b5826b374e64c3df6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -310,7 +310,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 583834141
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2054048915, guid: a72d98bf183aa4c4eadc15027a1ae282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -358,19 +358,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   zPosition: {x: 0, y: 0, z: 0}
+  gun: {fileID: 0}
   camTar: {fileID: 5315826934783445438, guid: f2ff22d8bdbca4441a0c0118cc42a956, type: 3}
   movement: {fileID: -2641590877879433146, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   shoot: {fileID: -2717748869268994693, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   pointerPos: {fileID: -98186982936080166, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   strike: {fileID: 2085565374834856575, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
   interact: {fileID: -1502282180637675306, guid: d03b63e97901544348e3d7443427f7c9, type: 3}
+  cover: {fileID: 0}
   zombieLayers:
     serializedVersion: 2
     m_Bits: 256
+  currentShovelCooldownTime: 0
+  isCovering: 0
   maxHealth: 100
   currentHealth: 0
   isDead: 0
+  dm: {fileID: 0}
+  deathCanvasStatus: 0
   currentZombieKillcount: 0
+  graveyardGrade: 0
+  scoretracker: {fileID: 0}
+  run: {fileID: 0}
+  hurt: {fileID: 0}
+  death: {fileID: 0}
+  dig: {fileID: 0}
 --- !u!95 &231275329507601760
 Animator:
   serializedVersion: 4
