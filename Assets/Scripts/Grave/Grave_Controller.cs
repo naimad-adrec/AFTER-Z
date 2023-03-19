@@ -24,6 +24,7 @@ public class Grave_Controller : MonoBehaviour
     private float currentGraveUnearthTime;
     private float currentCoverTime = 0;
     private Vector3 graveAmmoSpawnPoint;
+
     private void Start()
     {
         coll = GetComponent<BoxCollider2D>();

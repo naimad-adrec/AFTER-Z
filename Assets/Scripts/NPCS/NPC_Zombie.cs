@@ -21,13 +21,6 @@ public class NPC_Zombie : MonoBehaviour
     private Collider2D[] hitZ;
     private Vector2 boxSize = new Vector2(2.5f, 2.5f);
 
-    //Attack Variables
-    //private int attackRange = 1;
-    //private int attackDamage = 100;
-    //private float nextAttackTime;
-    //[SerializeField] private float attackCooldown = 2;
-    //private bool canAttack;
-
     //Audio Variables
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip die;
@@ -55,23 +48,13 @@ public class NPC_Zombie : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();
 
-        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
-        //canAttack = true;
+        newZZomPosition = Zombie_Z_Move.Instance.zombie_Z_Position;
     }
 
     private void Update()
     {
-        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
+        newZZomPosition = Zombie_Z_Move.Instance.zombie_Z_Position;
 
         if (rb != null && ai != null) ai.destination = newZZomPosition;
     }
-
-    //Timed functions
-    //private IEnumerator AttackCooldown()
-    //{
-        //canAttack = false;
-        //aiPath.canMove = true;
-        //yield return new WaitForSeconds(attackCooldown);
-        //canAttack = true;
-    //}
 }

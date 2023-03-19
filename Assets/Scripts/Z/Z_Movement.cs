@@ -88,7 +88,6 @@ public class Z_Movement : MonoBehaviour
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
-        Debug.Log(isCovering);
         if (cover.action.IsInProgress())
         {
             isCovering = true;
@@ -267,7 +266,6 @@ public class Z_Movement : MonoBehaviour
         }
 
         scoretracker.graveGrade = graveyardGrade;
-        Debug.Log(graveyardGrade);
     }
 
     public Vector3 GetPosition()

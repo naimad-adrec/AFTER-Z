@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-
    public void MainPlayButton()
    {
         SceneManager.LoadScene(1);
@@ -16,8 +15,5 @@ public class TitleManager : MonoBehaviour
     public void HowToPlayButton()
     {
         //SceneManager.LoadScene();
-    }
-    
-       
-   
+    }   
 }

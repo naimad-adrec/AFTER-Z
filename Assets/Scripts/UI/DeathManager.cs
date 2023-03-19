@@ -39,16 +39,13 @@ public class DeathManager : MonoBehaviour
         Qmark.enabled = true;
     }
 
-
     public void PlayZombieMode()
     {
         SceneManager.LoadScene(2);
     }
     
-
     public void ReturnMenu()
     {
         SceneManager.LoadScene(0);
     }
-    
 }

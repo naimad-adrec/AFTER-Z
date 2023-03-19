@@ -13,11 +13,9 @@ public class ScoreTracker : MonoBehaviour
     public int graveGrade;
     public int townGrade;
 
-
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
         Instance = this;
     }
-
 }

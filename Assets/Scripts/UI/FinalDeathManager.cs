@@ -16,7 +16,6 @@ public class FinalDeathManager : MonoBehaviour
         isdeadfinal.enabled = false;
     }
 
-
     public void ChangeCanvasFinal()
     {
         isdeadfinal.enabled = true;
@@ -55,7 +54,6 @@ public class FinalDeathManager : MonoBehaviour
             townGrade.text = "Z";
         }
     }
-
 
     public void PlayAgainButton()
     {
