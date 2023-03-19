@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPC_Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject npc;
-    private Vector3 npcSpawnPoint;
     private int npcSpawnCount = 0;
     private float currentNPCSpawnTime = 1f;
 
@@ -25,7 +24,7 @@ public class NPC_Spawner : MonoBehaviour
 
     private void SpawnNPC()
     {
-        if (npcSpawnCount <= 5)
+        if (npcSpawnCount <= 4)
         {
             Instantiate(npc, transform.position, transform.rotation, gameObject.transform);
         }

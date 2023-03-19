@@ -251,8 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4dc0010ddba4f0da54e0126a583fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   zombie: {fileID: 6094973249296520199, guid: e775a46e8ff0f4daea1739810b92923f, type: 3}
-  ammo: {fileID: 64131162879218212, guid: 2c84fa2ea6c5c4d829e3fcfdbdeb19fa, type: 3}
+  health: {fileID: 325485176055191070, guid: 33367377b558e4284bc17ef52964b613, type: 3}
 --- !u!95 &2172707258211448963
 Animator:
   serializedVersion: 4

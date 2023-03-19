@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPC_Controller : MonoBehaviour
@@ -22,8 +23,9 @@ public class NPC_Controller : MonoBehaviour
     private float wanderDistanceX;
     private float wanderDistanceY;
     private Vector3 newZZomPosition;
-    private Vector3 distance;
-    private Vector3 overallDistance;
+    private float distance;
+    private float xDistance;
+    private float yDistance;
     private float idleTimer = 5f;
     private float currentIdleTimer;
     public bool isScared;
@@ -36,10 +38,6 @@ public class NPC_Controller : MonoBehaviour
     private void OnEnable()
     {
         ai = GetComponent<IAstarAI>();
-        // Update the destination right before searching for a path as well.
-        // This is enough in theory, but this script will also update the destination every
-        // frame as the destination is used for debugging and may be used for other things by other
-        // scripts as well. So it makes sense that it is up to date every frame.
         if (ai != null) ai.onSearchPath += Update;
     }
 
@@ -55,21 +53,31 @@ public class NPC_Controller : MonoBehaviour
         aud = GetComponent<AudioSource>();
         currentHealth = maxHealth;
 
-        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
+        newZZomPosition = Zombie_Z_Move.Instance.zombie_Z_Position;
     }
 
     private void Update()
     {
-        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
-        distance = transform.position - newZZomPosition;
-        overallDistance = distance;
-        if (overallDistance.x < runDistance && overallDistance.y < runDistance)
+        newZZomPosition = Zombie_Z_Move.Instance.zombie_Z_Position;
+        xDistance = newZZomPosition.x - transform.position.x;
+        yDistance = newZZomPosition.y - transform.position.y;
+
+
+        distance = Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
+        if (distance < 5)
         {
             ai.maxSpeed = 10;
-            ai.destination = distance;
+            if (newZZomPosition.x > transform.position.x)
+            {
+                ai.destination = new Vector3((transform.position.x - distance), (transform.position.y - distance), transform.position.z);
+            }
+            else
+            {
+                ai.destination = new Vector3((transform.position.x + distance), (transform.position.y + distance), transform.position.z);
+            }
             isScared = true;
         }
-        else if (overallDistance.x > runDistance || overallDistance.y > runDistance)
+        else if (distance > 5)
         {
             isScared = false;
             if (currentIdleTimer >= 0)

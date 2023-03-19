@@ -24,6 +24,7 @@ public class Z_Movement : MonoBehaviour
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
     [HideInInspector] public Vector3 zPosition;
+    private Vector2 zDirection;
     [HideInInspector] private bool isMoving;
 
     //Mouse Variables
@@ -39,8 +40,8 @@ public class Z_Movement : MonoBehaviour
     //Shovel Variables
     [SerializeField] private LayerMask zombieLayers;
     private Collider2D[] hitZombies;
-    private float shovelCooldownTime = 5f;
-    public float currentShovelCooldownTime;
+    [SerializeField] private float shovelCooldownTime = 5f;
+    [HideInInspector] public float currentShovelCooldownTime;
     private bool canStrike = true;
     [HideInInspector] public bool isCovering;
     private Vector2 attackDirection;
@@ -91,7 +92,6 @@ public class Z_Movement : MonoBehaviour
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
-        Debug.Log(isCovering);
         if (cover.action.IsInProgress())
         {
             isCovering = true;
@@ -223,12 +223,12 @@ public class Z_Movement : MonoBehaviour
             if(canStrike == true)
             {
                 anim.SetTrigger("Strike");
-                if (pointerInput.x > 0.1f)
+                if (sp.flipX == false)
                 {
                     hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
                     attackDirection = Vector2.right;
                 }
-                if (pointerInput.x < 0.1f)
+                else if (sp.flipX == true)
                 {
                     hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
                     attackDirection = Vector2.left;
@@ -245,12 +245,15 @@ public class Z_Movement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        sound.clip = hurt;
+        Debug.Log(currentHealth);
+        //sound.clip = hurt;
+        //sound.Play();
 
         if (currentHealth <= 0)
         {
             Die();
-            sound.clip = death;
+            //sound.clip = death;
+            //sound.Play();
         }
     }
 
