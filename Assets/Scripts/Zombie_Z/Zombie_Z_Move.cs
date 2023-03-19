@@ -40,7 +40,9 @@ public class Zombie_Z_Move : MonoBehaviour
     [HideInInspector] public bool zombieZIsDead = false;
 
     //Audio Variables
-    
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip die;
+
     //[SerializeField] private AudioClip ;
 
 
@@ -52,6 +54,7 @@ public class Zombie_Z_Move : MonoBehaviour
         trans = GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
 
         zombie_Z_Position = transform.position;
         currentHealth = maxHealth;
@@ -129,7 +132,8 @@ public class Zombie_Z_Move : MonoBehaviour
     private void PerformAttack(InputAction.CallbackContext obj)
     {
         //Perform Attack
-       
+        aud.clip = attackSound;
+        aud.Play();
         if (playerInput.x < 0f)
         {
             anim.SetFloat("Horizontal", -1f);
@@ -167,6 +171,7 @@ public class Zombie_Z_Move : MonoBehaviour
             if (npc.gameObject.CompareTag("NPC"))
             {
                 npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
+                Timer.Instance.currentTime += 3;
             }
         }
     }
@@ -183,6 +188,8 @@ public class Zombie_Z_Move : MonoBehaviour
 
     private void Die()
     {
+        aud.clip = die;
+        aud.Play();
         coll.enabled = false;
         zombieZIsDead = true;
         anim.SetBool("IsDead", true);

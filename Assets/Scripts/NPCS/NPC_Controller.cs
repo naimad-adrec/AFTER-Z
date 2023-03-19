@@ -18,8 +18,10 @@ public class NPC_Controller : MonoBehaviour
     private int currentHealth;
     private bool isDead = false;
 
+    //Audio Variables
+    [SerializeField] private AudioClip die;
+
     //Ai Variables
-    private float runDistance = 5f;
     private float wanderDistanceX;
     private float wanderDistanceY;
     private Vector3 newZZomPosition;
@@ -114,7 +116,8 @@ public class NPC_Controller : MonoBehaviour
 
     private IEnumerator WaitForDeathAnim()
     {
-        Debug.Log("I died");
+        aud.clip = die;
+        aud.Play();
         //anim.SetBool("IsDead", true);
         isDead = true;
         coll.enabled = false;
