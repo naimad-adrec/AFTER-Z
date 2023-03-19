@@ -15,7 +15,7 @@ public class TitleManager : MonoBehaviour
     
     public void HowToPlayButton()
     {
-        //SceneManager.LoadScene();
+        SceneManager.LoadScene(3);
     }
     
        

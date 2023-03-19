@@ -11,11 +11,12 @@ public class FinalDeathManager : MonoBehaviour
     [SerializeField] private Canvas playerUi;
     [SerializeField] private TextMeshProUGUI graveyardGrade;
     [SerializeField] private TextMeshProUGUI townGrade;
+
+    public int finalTownGrade;
     private void Start()
     {
         isdeadfinal.enabled = false;
     }
-
 
     public void ChangeCanvasFinal()
     {
@@ -37,16 +38,16 @@ public class FinalDeathManager : MonoBehaviour
         {
             graveyardGrade.text = "Z";
         }
-
-        if (ScoreTracker.Instance.townGrade == 4)
+        Debug.Log(finalTownGrade);
+        if (finalTownGrade == 4)
         {
             townGrade.text = "C";
         }
-        else if (ScoreTracker.Instance.townGrade == 3)
+        else if (finalTownGrade == 3)
         {
             townGrade.text = "B";
         }
-        else if (ScoreTracker.Instance.townGrade == 2)
+        else if (finalTownGrade == 2)
         {
             townGrade.text = "A";
         }
@@ -54,6 +55,7 @@ public class FinalDeathManager : MonoBehaviour
         {
             townGrade.text = "Z";
         }
+        Debug.Log(finalTownGrade);
     }
 
 

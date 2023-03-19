@@ -15,7 +15,6 @@ public class Z_Movement : MonoBehaviour
     private Transform trans;
     private SpriteRenderer sp;
     private Animator anim;
-    private AudioSource sound;
 
     //Instance
     public static Z_Movement Instance { get; private set; }
@@ -24,6 +23,9 @@ public class Z_Movement : MonoBehaviour
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
     [HideInInspector] public Vector3 zPosition;
+    private Vector2 zDirection;
+    [HideInInspector] private bool isMoving;
+    [HideInInspector] public float zTimeAlive = 0f;
 
     //Mouse Variables
     private Vector3 mousePos;
@@ -38,8 +40,8 @@ public class Z_Movement : MonoBehaviour
     //Shovel Variables
     [SerializeField] private LayerMask zombieLayers;
     private Collider2D[] hitZombies;
-    private float shovelCooldownTime = 5f;
-    public float currentShovelCooldownTime;
+    [SerializeField] private float shovelCooldownTime = 5f;
+    [HideInInspector] public float currentShovelCooldownTime;
     private bool canStrike = true;
     [HideInInspector] public bool isCovering;
     private Vector2 attackDirection;
@@ -48,20 +50,25 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private int maxHealth = 100;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool isDead = false;
-    [SerializeField] private DeathManager dm;
 
     //Scene Variables
     private float deathTimer = 4f;
     private float currentDeathTimer;
     [HideInInspector] public bool deathCanvasStatus = false;
     [HideInInspector] public int currentZombieKillcount = 0;
-    public int graveyardGrade;
+    private int graveyardGrade;
     [SerializeField] private ScoreTracker scoretracker;
 
     //Sound Variables
-    [SerializeField] private AudioClip run;
-    [SerializeField] private AudioClip hurt;
-    [SerializeField] private AudioClip death;
+    [SerializeField] private AudioSource run;
+    [SerializeField] private AudioSource hurt;
+    [SerializeField] private AudioSource death;
+    [SerializeField] private AudioSource dig;
+    [SerializeField] private AudioSource shovel;
+    [SerializeField] private AudioSource health;
+    [SerializeField] private AudioSource ammo;
+
+
 
     private void Start()
     {
@@ -72,7 +79,6 @@ public class Z_Movement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         gunParent = GetComponentInChildren<Gun_Parent>();
-        sound = gameObject.GetComponent<AudioSource>();
 
         zPosition = transform.position;
         currentHealth = maxHealth;
@@ -88,7 +94,7 @@ public class Z_Movement : MonoBehaviour
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
-        Debug.Log(isCovering);
+        zTimeAlive += Time.deltaTime;
         if (cover.action.IsInProgress())
         {
             isCovering = true;
@@ -110,18 +116,23 @@ public class Z_Movement : MonoBehaviour
             {
                 sp.flipX = false;
             }
-            if(isCovering == true)
+            if (isCovering == true)
             {
                 anim.SetBool("IsShoveling", true);
                 SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
                 gunEnabled.enabled = false;
                 playerInput = Vector2.zero;
+                if (!dig.isPlaying)
+                {
+                    dig.Play();
+                }
             }
             else
             {
                 anim.SetBool("IsShoveling", false);
                 SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
                 gunEnabled.enabled = true;
+                dig.Stop();
             }
         }
         else
@@ -153,12 +164,24 @@ public class Z_Movement : MonoBehaviour
         if (playerInput.x == 0f && playerInput.y == 0f)
         {
             anim.SetBool("IsWalking", false);
+            isMoving = false;
         }
         else
         {
             anim.SetBool("IsWalking", true);
-            sound.clip = run;
-            sound.Play();
+            isMoving = true;
+        }
+    //Running Sound Player
+        if (isMoving)
+        {
+            if (!run.isPlaying)
+            {
+                run.Play();
+            }
+        }
+        else
+        {
+            run.Stop();
         }
     }
 
@@ -181,7 +204,6 @@ public class Z_Movement : MonoBehaviour
         shoot.action.performed -= PerformShoot;
         strike.action.performed -= PerformStrike;
     }
-
     private void PerformShoot(InputAction.CallbackContext obj)
     {
         if(gunParent == null)
@@ -207,12 +229,13 @@ public class Z_Movement : MonoBehaviour
             if(canStrike == true)
             {
                 anim.SetTrigger("Strike");
-                if (pointerInput.x > 0.1f)
+                shovel.Play();
+                if (sp.flipX == false)
                 {
                     hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
                     attackDirection = Vector2.right;
                 }
-                if (pointerInput.x < 0.1f)
+                else if (sp.flipX == true)
                 {
                     hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x - 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
                     attackDirection = Vector2.left;
@@ -229,19 +252,19 @@ public class Z_Movement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        sound.clip = hurt;
-        sound.Play();
-
+        if (currentHealth > 0)
+        {
+            hurt.Play();
+        }
         if (currentHealth <= 0)
         {
             Die();
-            sound.clip = death;
-            sound.Play();
         }
     }
 
     public void Die()
     {
+        death.Play();
         coll.enabled = false;
         isDead = true;
         anim.SetBool("IsDead", true);
@@ -249,15 +272,15 @@ public class Z_Movement : MonoBehaviour
         gunParent.ammoCount = 0;
         playerInput = new Vector2(0, 0);
 
-        if(currentZombieKillcount < 30)
+        if(currentZombieKillcount < 10)
         {
             graveyardGrade = 4;
         }
-        else if (currentZombieKillcount > 30 && currentZombieKillcount < 50)
+        else if (currentZombieKillcount > 10 && currentZombieKillcount < 25)
         {
             graveyardGrade = 3;
         }
-        else if (currentZombieKillcount > 50 && currentZombieKillcount < 100)
+        else if (currentZombieKillcount > 25 && currentZombieKillcount < 50)
         {
             graveyardGrade = 2;
         }
@@ -267,7 +290,6 @@ public class Z_Movement : MonoBehaviour
         }
 
         scoretracker.graveGrade = graveyardGrade;
-        Debug.Log(graveyardGrade);
     }
 
     public Vector3 GetPosition()
@@ -279,11 +301,13 @@ public class Z_Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ammo"))
         {
+            ammo.Play();
             gunParent.ammoCount = 8;
         }
         if (collision.gameObject.CompareTag("Health"))
         {
-            if(currentHealth <= 80)
+            health.Play();
+            if (currentHealth <= 80)
             {
                 currentHealth += 20;
             }

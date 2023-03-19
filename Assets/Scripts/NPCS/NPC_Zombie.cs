@@ -33,9 +33,10 @@ public class NPC_Zombie : MonoBehaviour
     [SerializeField] private AudioClip die;
 
     //Z Variables
-    private GameObject zZom;
     private Vector3 newZZomPosition;
+    private Vector3 aroundZZom;
 
+    //AI Variables
     private IAstarAI ai;
 
     private void OnEnable()
@@ -55,15 +56,34 @@ public class NPC_Zombie : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         aud = GetComponent<AudioSource>();
 
-        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
+        newZZomPosition = Zombie_Z_Move.Instance.zombie_Z_Position;
         //canAttack = true;
     }
 
     private void Update()
     {
-        newZZomPosition = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position;
+        newZZomPosition = Zombie_Z_Move.Instance.zombie_Z_Position;
+        aroundZZom = new Vector3(newZZomPosition.x, newZZomPosition.y, transform.position.z);
 
-        if (rb != null && ai != null) ai.destination = newZZomPosition;
+        if (transform.position.x > newZZomPosition.x)
+        {
+            aroundZZom.x = aroundZZom.x + 1;
+        }
+        else if(transform.position.x < newZZomPosition.x)
+        {
+            aroundZZom.x = aroundZZom.x - 1;
+        }
+
+        if (transform.position.y > newZZomPosition.y)
+        {
+            aroundZZom.y = aroundZZom.y + 1;
+        }
+        else if (transform.position.y < newZZomPosition.y)
+        {
+            aroundZZom.y = aroundZZom.y - 1;
+        }
+
+        if (rb != null && ai != null) ai.destination = aroundZZom;
     }
 
     //Timed functions

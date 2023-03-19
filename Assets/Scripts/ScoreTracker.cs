@@ -6,18 +6,15 @@ using UnityEngine.UI;
 
 public class ScoreTracker : MonoBehaviour
 {
-
     public static ScoreTracker Instance
     { get; private set; }
 
     public int graveGrade;
     public int townGrade;
 
-
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
         Instance = this;
+        DontDestroyOnLoad(transform.gameObject);
     }
-
 }

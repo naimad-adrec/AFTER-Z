@@ -11,7 +11,6 @@ public class Health_Drop : MonoBehaviour
         healthAudio = GetComponent<AudioSource>();
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

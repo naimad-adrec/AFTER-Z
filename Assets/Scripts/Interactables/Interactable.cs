@@ -29,7 +29,7 @@ public class Interactable : MonoBehaviour
             {
                 interactAction.Invoke();
             }
-            if (spaceIsHeld)
+            if (spaceIsHeld && GetComponentInParent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Grave_Opened"))
             {
                 holdAction.Invoke();
             }

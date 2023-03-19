@@ -18,7 +18,6 @@ public class ShovelUI : MonoBehaviour
     private void Update()
     {
         currentCooldown = GameObject.Find("Z").GetComponent<Z_Movement>().currentShovelCooldownTime;
-        Debug.Log(currentCooldown);
         cooldown.value = currentCooldown;
     }
 }
