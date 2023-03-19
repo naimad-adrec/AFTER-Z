@@ -58,9 +58,9 @@ public class Timer : MonoBehaviour
             else
             {
                 timerStarted = false;
-                changeCanvas.ChangeCanvasFinal();
                 currentTime = 0;
                 timeUp.Invoke();
+                changeCanvas.ChangeCanvasFinal();
             }
         }
     }

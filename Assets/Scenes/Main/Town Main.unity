@@ -9657,6 +9657,7 @@ MonoBehaviour:
   playerUi: {fileID: 438443995}
   graveyardGrade: {fileID: 1171878791}
   townGrade: {fileID: 958051724}
+  finalTownGrade: 0
 --- !u!114 &352352576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111526,7 +111527,7 @@ MonoBehaviour:
   zombieZIsDead: 0
   attackSound: {fileID: 8300000, guid: 49bd0ad6d02004287989725f8761aa48, type: 3}
   die: {fileID: 8300000, guid: b580498ed3e8b4b04ade16021c6dca88, type: 3}
-  scoretracker: {fileID: 5985122729041144191, guid: a48b396f71aa84250a21a2d8809460b3, type: 3}
+  deathMan: {fileID: 352352575}
 --- !u!50 &983392687
 Rigidbody2D:
   serializedVersion: 4

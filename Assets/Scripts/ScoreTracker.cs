@@ -14,7 +14,7 @@ public class ScoreTracker : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
         Instance = this;
+        DontDestroyOnLoad(transform.gameObject);
     }
 }

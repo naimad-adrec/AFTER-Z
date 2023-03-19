@@ -25,6 +25,7 @@ public class Z_Movement : MonoBehaviour
     [HideInInspector] public Vector3 zPosition;
     private Vector2 zDirection;
     [HideInInspector] private bool isMoving;
+    [HideInInspector] public float zTimeAlive = 0f;
 
     //Mouse Variables
     private Vector3 mousePos;
@@ -64,6 +65,8 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private AudioSource death;
     [SerializeField] private AudioSource dig;
     [SerializeField] private AudioSource shovel;
+    [SerializeField] private AudioSource health;
+    [SerializeField] private AudioSource ammo;
 
 
 
@@ -91,6 +94,7 @@ public class Z_Movement : MonoBehaviour
         gunParent.pointerPos = pointerInput;
         camTar.camMousePos = new Vector3 (pointerInput.x, pointerInput.y, mousePos.z);
         Vector2 zDirection = (pointerInput - (Vector2)transform.position).normalized;
+        zTimeAlive += Time.deltaTime;
         if (cover.action.IsInProgress())
         {
             isCovering = true;
@@ -297,11 +301,13 @@ public class Z_Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ammo"))
         {
+            ammo.Play();
             gunParent.ammoCount = 8;
         }
         if (collision.gameObject.CompareTag("Health"))
         {
-            if(currentHealth <= 80)
+            health.Play();
+            if (currentHealth <= 80)
             {
                 currentHealth += 20;
             }

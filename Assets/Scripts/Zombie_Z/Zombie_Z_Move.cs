@@ -32,7 +32,7 @@ public class Zombie_Z_Move : MonoBehaviour
     private Collider2D[] hitNPC;
     private int attackDamage = 100;
     public int totalNPCKillCount;
-    private int townGrade;
+    private int currentTownGrade;
 
     //Health Variables
     [SerializeField] private int maxHealth = 100;
@@ -45,6 +45,7 @@ public class Zombie_Z_Move : MonoBehaviour
 
     //Timer Variable
     private float timeAlive = 0f;
+    [SerializeField] private FinalDeathManager deathMan;
 
 
     private void Start()
@@ -181,6 +182,7 @@ public class Zombie_Z_Move : MonoBehaviour
 
     public void Die()
     {
+        moveSpeed = 0;
         aud.clip = die;
         aud.Play();
         coll.enabled = false;
@@ -189,22 +191,21 @@ public class Zombie_Z_Move : MonoBehaviour
         playerInput = new Vector2(0, 0);
         if (timeAlive < 16)
         {
-            townGrade = 4;
+            currentTownGrade = 4;
         }
-        else if (timeAlive > 16 && timeAlive < 30)
+        else if (timeAlive >= 16 && timeAlive < 40)
         {
-            townGrade = 3;
+            currentTownGrade = 3;
         }
-        else if (timeAlive > 30 && timeAlive < 60)
+        else if (timeAlive >= 40 && timeAlive < 70)
         {
-            townGrade = 2;
+            currentTownGrade = 2;
         }
         else
         {
-            townGrade = 1;
+            currentTownGrade = 1;
         }
-        ScoreTracker.Instance.townGrade = townGrade;
-        Debug.Log(ScoreTracker.Instance.townGrade);
+        deathMan.finalTownGrade = currentTownGrade;
     }
 
     public Vector3 GetPosition()
