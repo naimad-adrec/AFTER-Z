@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -17,14 +18,13 @@ public class Timer : MonoBehaviour
     private int timeState;
     private bool timerStarted = false;
 
-    // ref var for my TMP text component
-    [SerializeField] private TMP_Text timerText;
+    //UI Slider Variable
+    [SerializeField] private Slider timerSlider;
 
     private void Start()
     {
         Instance = this;
         currentTime = startTime;
-        timerText.text = currentTime.ToString();
         timerStarted = true;
         timeState = ScoreTracker.Instance.graveGrade;
 
@@ -44,6 +44,7 @@ public class Timer : MonoBehaviour
         {
             currentTime = 30;
         }
+
     }
 
     private void Update()
@@ -52,7 +53,7 @@ public class Timer : MonoBehaviour
         {
             if (currentTime > 0)
             {
-                timerText.text = "Time " + currentTime.ToString("f1");
+                timerSlider.value = currentTime;
                 currentTime -= Time.deltaTime;
             }
             else
