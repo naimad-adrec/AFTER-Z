@@ -43,7 +43,8 @@ public class Zombie_Z_Move : MonoBehaviour
     [SerializeField] private AudioClip attackSound;
     [SerializeField] private AudioClip die;
 
-    //[SerializeField] private AudioClip ;
+    //Timer Variable
+    private float timeAlive = 0f;
 
 
     private void Start()
@@ -70,6 +71,8 @@ public class Zombie_Z_Move : MonoBehaviour
         if (zombieZIsDead == false)
         {
             playerInput = movement.action.ReadValue<Vector2>();
+
+            timeAlive += Time.deltaTime;
 
             if (playerInput.x < 0f)
             {
@@ -171,7 +174,7 @@ public class Zombie_Z_Move : MonoBehaviour
             if (npc.gameObject.CompareTag("NPC"))
             {
                 npc.GetComponent<NPC_Controller>().NPCTakeDamage(attackDamage);
-                Timer.Instance.currentTime += 3;
+                Timer.Instance.currentTime += 1;
             }
         }
     }
@@ -194,15 +197,15 @@ public class Zombie_Z_Move : MonoBehaviour
         zombieZIsDead = true;
         anim.SetBool("IsDead", true);
         playerInput = new Vector2(0, 0);
-        if (totalNPCKillCount < 30)
+        if (timeAlive < 16)
         {
             townGrade = 4;
         }
-        else if (totalNPCKillCount > 30 && totalNPCKillCount < 50)
+        else if (timeAlive > 16 && timeAlive < 30)
         {
             townGrade = 3;
         }
-        else if (totalNPCKillCount > 50 && totalNPCKillCount < 100)
+        else if (timeAlive > 30 && timeAlive < 60)
         {
             townGrade = 2;
         }

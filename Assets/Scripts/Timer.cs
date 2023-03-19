@@ -28,19 +28,19 @@ public class Timer : MonoBehaviour
 
         if(timeState == 4)
         {
-            currentTime = 60;
+            currentTime = 10;
         }
         else if (timeState == 3)
         {
-            currentTime = 90;
+            currentTime = 15;
         }
         else if (timeState == 2)
         {
-            currentTime = 120;
+            currentTime = 20;
         }
         else
         {
-            currentTime = 180;
+            currentTime = 30;
         }
     }
 

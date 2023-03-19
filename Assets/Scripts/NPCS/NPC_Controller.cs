@@ -66,7 +66,7 @@ public class NPC_Controller : MonoBehaviour
 
 
         distance = Mathf.Sqrt(Mathf.Pow(xDistance, 2) + Mathf.Pow(yDistance, 2));
-        if (distance < 5)
+        if (distance < 7)
         {
             ai.maxSpeed = 10;
             if (newZZomPosition.x > transform.position.x)
@@ -79,7 +79,7 @@ public class NPC_Controller : MonoBehaviour
             }
             isScared = true;
         }
-        else if (distance > 5)
+        else
         {
             isScared = false;
             if (currentIdleTimer >= 0)
