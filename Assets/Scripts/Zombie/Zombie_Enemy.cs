@@ -76,7 +76,6 @@ public class Zombie_Enemy : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(canAttack);
         zNewPosition = Z_Movement.Instance.zPosition;
         zIsDead = Z_Movement.Instance.isDead;
 

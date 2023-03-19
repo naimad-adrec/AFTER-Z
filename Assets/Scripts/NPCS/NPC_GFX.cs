@@ -21,7 +21,7 @@ public class NPC_GFX : MonoBehaviour
 
     private void Update()
     {
-        zZomLayerPos = GameObject.Find("Zombie Z").GetComponent<Zombie_Z_Move>().zombie_Z_Position; ;
+        zZomLayerPos = Zombie_Z_Move.Instance.zombie_Z_Position;
 
         if (aiPath.desiredVelocity.x >= 0.01f)
         {
@@ -39,6 +39,15 @@ public class NPC_GFX : MonoBehaviour
         else
         {
             anim.SetBool("IsScared", false);
+        }
+
+        if (aiPath.desiredVelocity.x >= 0.01f)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        else if (aiPath.desiredVelocity.x <= -0.01f)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
 
         ZombieLayerSort(zZomLayerPos);
