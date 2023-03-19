@@ -16,7 +16,7 @@ public class NPC_Controller : MonoBehaviour
     //Health Variables
     [SerializeField] private int maxHealth = 100;
     private int currentHealth;
-    private bool isDead = false;
+    public bool isDead = false;
 
     //Audio Variables
     [SerializeField] private AudioClip die;
@@ -100,7 +100,6 @@ public class NPC_Controller : MonoBehaviour
     public void NPCTakeDamage(int damage)
     {
         currentHealth -= damage;
-        //anim.SetTrigger("NPCHurt");
 
         if (currentHealth <= 0)
         {
@@ -118,7 +117,6 @@ public class NPC_Controller : MonoBehaviour
     {
         aud.clip = die;
         aud.Play();
-        //anim.SetBool("IsDead", true);
         isDead = true;
         coll.enabled = false;
         aiPath.canMove = false;

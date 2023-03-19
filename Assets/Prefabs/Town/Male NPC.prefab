@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aiPath: {fileID: 1611712487629403414}
   maxHealth: 100
+  isDead: 0
   die: {fileID: 8300000, guid: 0431a6f1e347c473f92ec97dcb5fcf46, type: 3}
   isScared: 0
   zombie: {fileID: 171413518548620626, guid: 1da44901d45da4b19803c07973f82821, type: 3}
@@ -282,7 +283,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0431a6f1e347c473f92ec97dcb5fcf46, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
