@@ -15,7 +15,6 @@ public class Z_Movement : MonoBehaviour
     private Transform trans;
     private SpriteRenderer sp;
     private Animator anim;
-    private AudioSource sound;
 
     //Instance
     public static Z_Movement Instance { get; private set; }
@@ -61,10 +60,12 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private ScoreTracker scoretracker;
 
     //Sound Variables
-    [SerializeField] private AudioClip run;
-    [SerializeField] private AudioClip hurt;
-    [SerializeField] private AudioClip death;
-    [SerializeField] private AudioClip dig;
+    [SerializeField] private AudioSource run;
+    [SerializeField] private AudioSource hurt;
+    [SerializeField] private AudioSource death;
+    [SerializeField] private AudioSource dig;
+    [SerializeField] private AudioSource shovel;
+
 
 
     private void Start()
@@ -76,7 +77,6 @@ public class Z_Movement : MonoBehaviour
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         gunParent = GetComponentInChildren<Gun_Parent>();
-        sound = gameObject.GetComponent<AudioSource>();
 
         zPosition = transform.position;
         currentHealth = maxHealth;
@@ -119,12 +119,17 @@ public class Z_Movement : MonoBehaviour
                 SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
                 gunEnabled.enabled = false;
                 playerInput = Vector2.zero;
+                if (!dig.isPlaying)
+                {
+                        dig.Play();
+                }
             }
             else
             {
                 anim.SetBool("IsShoveling", false);
                 SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
                 gunEnabled.enabled = true;
+                dig.Stop();
             }
         }
         else
@@ -167,14 +172,14 @@ public class Z_Movement : MonoBehaviour
     //Running Sound Player
         if (isMoving)
         {
-            if (!sound.isPlaying)
+            if (!run.isPlaying)
             {
-                sound.Play();
+                run.Play();
             }
         }
         else
         {
-            sound.Stop();
+            run.Stop();
         }
     }
 
@@ -223,6 +228,7 @@ public class Z_Movement : MonoBehaviour
             if(canStrike == true)
             {
                 anim.SetTrigger("Strike");
+                shovel.Play();
                 if (sp.flipX == false)
                 {
                     hitZombies = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 1.5f, transform.position.y), new Vector2(3, 3), 0f, zombieLayers);
@@ -246,19 +252,19 @@ public class Z_Movement : MonoBehaviour
     {
         currentHealth -= damage;
         Debug.Log(currentHealth);
-        //sound.clip = hurt;
-        //sound.Play();
-
+        if (currentHealth > 0)
+        {
+            hurt.Play();
+        }
         if (currentHealth <= 0)
         {
             Die();
-            //sound.clip = death;
-            //sound.Play();
         }
     }
 
     public void Die()
     {
+        death.Play();
         coll.enabled = false;
         isDead = true;
         anim.SetBool("IsDead", true);
