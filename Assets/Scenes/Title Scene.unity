@@ -207,9 +207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009412289}
-        m_TargetAssemblyTypeName: UnityEngine.UI.CanvasScaler, UnityEngine.UI
-        m_MethodName: 
+      - m_Target: {fileID: 1009412292}
+        m_TargetAssemblyTypeName: TitleManager, Assembly-CSharp
+        m_MethodName: HowToPlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
