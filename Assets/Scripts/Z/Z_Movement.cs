@@ -24,6 +24,7 @@ public class Z_Movement : MonoBehaviour
     private Vector2 playerInput { get; set; }
     [SerializeField] private float moveSpeed;
     [HideInInspector] public Vector3 zPosition;
+    [HideInInspector] private bool isMoving;
 
     //Mouse Variables
     private Vector3 mousePos;
@@ -62,6 +63,8 @@ public class Z_Movement : MonoBehaviour
     [SerializeField] private AudioClip run;
     [SerializeField] private AudioClip hurt;
     [SerializeField] private AudioClip death;
+    [SerializeField] private AudioClip dig;
+
 
     private void Start()
     {
@@ -110,7 +113,7 @@ public class Z_Movement : MonoBehaviour
             {
                 sp.flipX = false;
             }
-            if(isCovering == true)
+            if (isCovering == true)
             {
                 anim.SetBool("IsShoveling", true);
                 SpriteRenderer gunEnabled = gun.GetComponent<SpriteRenderer>();
@@ -153,12 +156,25 @@ public class Z_Movement : MonoBehaviour
         if (playerInput.x == 0f && playerInput.y == 0f)
         {
             anim.SetBool("IsWalking", false);
+            isMoving = false;
+
         }
         else
         {
             anim.SetBool("IsWalking", true);
-            sound.clip = run;
-            sound.Play();
+            isMoving = true;
+        }
+    //Running Sound Player
+        if (isMoving)
+        {
+            if (!sound.isPlaying)
+            {
+                sound.Play();
+            }
+        }
+        else
+        {
+            sound.Stop();
         }
     }
 
@@ -230,13 +246,11 @@ public class Z_Movement : MonoBehaviour
     {
         currentHealth -= damage;
         sound.clip = hurt;
-        sound.Play();
 
         if (currentHealth <= 0)
         {
             Die();
             sound.clip = death;
-            sound.Play();
         }
     }
 
